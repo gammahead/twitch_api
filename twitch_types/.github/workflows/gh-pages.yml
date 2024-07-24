@@ -1,0 +1,26 @@
+name: github pages
+env:
+  RUSTDOCFLAGS: "-Z unstable-options --cfg nightly"
+  RUSTFLAGS: "--cfg nightly"
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: dtolnay/rust-toolchain@nightly
+      - uses: Swatinem/rust-cache@v2
+      - name: build docs
+        run: cargo doc --no-deps --locked --all-features -Zrustdoc-map
+      - name: move index.html
+        run: cp ./docs/index.html ./target/doc/index.html
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc

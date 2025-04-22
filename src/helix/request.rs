@@ -24,7 +24,7 @@ pub trait Request: serde::Serialize {
     /// Returns full URI for the request, including query parameters.
     fn get_uri(&self) -> Result<http::Uri, InvalidUri> {
         let query = self.query()?;
-        let url = crate::TWITCH_HELIX_URL
+        let url = crate::TWITCH_HELIX_EVENTSUB_URL
             .join(<Self as Request>::PATH)
             .map(|mut u| {
                 u.set_query(Some(&query));

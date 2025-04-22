@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["UserAuthorizationRevokeV1","UserAuthorizationRevokeV1Payload"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["end","gift","message"],"struct":["ChannelSubscriptionEndV1","ChannelSubscriptionEndV1Payload","ChannelSubscriptionGiftV1","ChannelSubscriptionGiftV1Payload","ChannelSubscriptionMessageV1","ChannelSubscriptionMessageV1Payload"]};

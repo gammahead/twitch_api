@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ChannelPollBeginV1","ChannelPollBeginV1Payload"]};

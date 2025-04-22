@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["BearerTokenType"],"mod":["errors"],"struct":["AppAccessToken","ImplicitUserTokenBuilder","UserToken","UserTokenBuilder","ValidatedToken"],"trait":["TwitchToken"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["EventsubWebsocketData","EventsubWebsocketMetadata"],"struct":["KeepaliveMetadata","NotificationMetadata","ReconnectMetadata","ReconnectPayload","RevocationMetadata","SessionData","WelcomeMetadata","WelcomePayload"]};

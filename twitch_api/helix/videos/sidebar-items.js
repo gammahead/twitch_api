@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Sort","VideoPeriod","VideoTypeFilter"],"mod":["delete_videos","get_videos"],"struct":["GetVideosRequest","Video"]};

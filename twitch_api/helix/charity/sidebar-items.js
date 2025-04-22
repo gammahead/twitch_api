@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["get_charity_campaign","get_charity_campaign_donations"],"struct":["CharityCampaign","CharityCampaignDonation","GetCharityCampaignDonationsRequest","GetCharityCampaignRequest"]};

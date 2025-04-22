@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["PollStatus"],"struct":["GetPollsRequest","Poll","PollChoice"]};

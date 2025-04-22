@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["AutoModQueueReply","Fragment"],"struct":["AutoModCaughtMessage","AutoModQueue","Automod","Content","ContentClassification","FragmentUserMention","Message","MessageUser","MessageUserBadges"]};

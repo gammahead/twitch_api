@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["begin","end","progress"],"struct":["BitsVoting","ChannelPointsVoting","ChannelPollBeginV1","ChannelPollBeginV1Payload","ChannelPollEndV1","ChannelPollEndV1Payload","ChannelPollProgressV1","ChannelPollProgressV1Payload"]};

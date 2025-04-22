@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["SendWhisperResponse"],"mod":["send_whisper"],"struct":["SendWhisperBody","SendWhisperRequest"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["search_categories","search_channels"],"struct":["Category","Channel","SearchCategoriesRequest","SearchChannelsRequest"]};

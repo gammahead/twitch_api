@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Max","PollStatus","PredictionStatus"],"struct":["GlobalCooldown","PollChoice","PollChoiceId","PollChoiceIdRef","PollId","PollIdRef","PredictionId","PredictionIdRef","PredictionOutcome","PredictionOutcomeId","PredictionOutcomeIdRef","PredictionTopPredictors","RedemptionId","RedemptionIdRef","RewardId","RewardIdRef"]};

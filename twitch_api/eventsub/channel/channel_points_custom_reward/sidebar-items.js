@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["add","remove","update"],"struct":["ChannelPointsCustomRewardAddV1","ChannelPointsCustomRewardAddV1Payload","ChannelPointsCustomRewardRemoveV1","ChannelPointsCustomRewardRemoveV1Payload","ChannelPointsCustomRewardUpdateV1","ChannelPointsCustomRewardUpdateV1Payload"]};

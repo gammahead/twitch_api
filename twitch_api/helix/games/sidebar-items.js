@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["get_games","get_top_games"],"struct":["Game","GetGamesRequest","GetTopGamesRequest"]};

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["check_user_subscription","get_broadcaster_subscriptions","get_broadcaster_subscriptions_events"],"struct":["BroadcasterSubscription","BroadcasterSubscriptionEvent","CheckUserSubscriptionRequest","GetBroadcasterSubscriptionsEventsRequest","GetBroadcasterSubscriptionsRequest","UserSubscription"]};

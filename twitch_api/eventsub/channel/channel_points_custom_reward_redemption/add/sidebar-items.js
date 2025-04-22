@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ChannelPointsCustomRewardRedemptionAddV1","ChannelPointsCustomRewardRedemptionAddV1Payload"]};

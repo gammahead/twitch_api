@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["CreatePredictionBody","CreatePredictionRequest","NewPredictionOutcome"],"type":["CreatePredictionResponse"]};

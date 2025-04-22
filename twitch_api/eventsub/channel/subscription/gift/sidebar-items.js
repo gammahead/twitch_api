@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ChannelSubscriptionGiftV1","ChannelSubscriptionGiftV1Payload"]};

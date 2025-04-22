@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ChannelPredictionProgressV1","ChannelPredictionProgressV1Payload"]};

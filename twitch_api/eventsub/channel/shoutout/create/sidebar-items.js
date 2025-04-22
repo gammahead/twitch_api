@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ChannelShoutoutCreateV1","ChannelShoutoutCreateV1Payload"]};

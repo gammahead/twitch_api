@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ClientRequestError","CreateRequestError","HelixRequestDeleteError","HelixRequestGetError","HelixRequestPatchError","HelixRequestPostError","HelixRequestPutError","InvalidUri","SerializeError"]};

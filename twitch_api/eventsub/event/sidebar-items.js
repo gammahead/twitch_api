@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["Event","EventType"],"mod":["websocket"],"struct":["EventTypeParseError"]};

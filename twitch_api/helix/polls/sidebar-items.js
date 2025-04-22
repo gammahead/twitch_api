@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["create_poll","end_poll","get_polls"],"struct":["CreatePollBody","CreatePollRequest","EndPollBody","EndPollRequest","GetPollsRequest","NewPollChoice","Poll"]};

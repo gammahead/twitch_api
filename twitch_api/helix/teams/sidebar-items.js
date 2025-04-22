@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["get_channel_teams","get_teams"],"struct":["TeamInformation"]};

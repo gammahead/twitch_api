@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["grant","revoke"],"struct":["UserAuthorizationGrantV1","UserAuthorizationGrantV1Payload","UserAuthorizationRevokeV1","UserAuthorizationRevokeV1Payload"]};

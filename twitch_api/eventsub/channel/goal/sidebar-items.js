@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["begin","end","progress"],"struct":["ChannelGoalBeginV1","ChannelGoalBeginV1Payload","ChannelGoalEndV1","ChannelGoalEndV1Payload","ChannelGoalProgressV1","ChannelGoalProgressV1Payload"]};

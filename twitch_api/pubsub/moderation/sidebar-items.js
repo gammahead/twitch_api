@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":["ChannelAction","ChatModeratorActionsReply","ModerationActionCommand","ModerationType"],"struct":["ChannelTermsAction","ChatModeratorActions","ModerationAction","ModeratorAdded","ModeratorRemoved","UnbanRequest","VipAdded"]};

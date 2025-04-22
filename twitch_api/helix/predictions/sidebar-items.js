@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"mod":["create_prediction","end_prediction","get_predictions"],"struct":["GetPredictionsRequest","Prediction"]};

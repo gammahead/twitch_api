@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"struct":["ChannelBanV1","ChannelBanV1Payload"]};

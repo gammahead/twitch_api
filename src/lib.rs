@@ -420,6 +420,6 @@ pub mod tests {
         serde_cbor::from_slice::<T>(
             &serde_cbor::to_vec(val).expect("could not make into cbor bytes"),
         )
-        .expect("could not convert back from cbor");
+        .expect("could not convert back from cbor ");
     }
 }

@@ -189,237 +189,230 @@
 <a href=#189 id=189 data-nosnippet>189</a></span><span class="kw">pub static </span>TWITCH_PUBSUB_URL: once_cell::sync::Lazy&lt;url::Url&gt; =
 <a href=#190 id=190 data-nosnippet>190</a>    <span class="macro">mock_env_url!</span>(<span class="string">"TWITCH_PUBSUB_URL"</span>, <span class="string">"wss://pubsub-edge.twitch.tv"</span>);
 <a href=#191 id=191 data-nosnippet>191</a>
-<a href=#192 id=192 data-nosnippet>192</a><span class="doccomment">/// Location to twitch Eventsub endpoints
+<a href=#192 id=192 data-nosnippet>192</a><span class="doccomment">/// Location to twitch Eventsub WebSocket
 <a href=#193 id=193 data-nosnippet>193</a>///
-<a href=#194 id=194 data-nosnippet>194</a>/// Can be overriden when feature `mock_api` is enabled with environment variable `TWITCH_HELIX_EVENTSUB_URL`.
-<a href=#195 id=195 data-nosnippet>195</a></span><span class="attr">#[cfg(feature = <span class="string">"helix"</span>)]
-<a href=#196 id=196 data-nosnippet>196</a></span><span class="kw">pub static </span>TWITCH_HELIX_EVENTSUB_URL: once_cell::sync::Lazy&lt;url::Url&gt; =
-<a href=#197 id=197 data-nosnippet>197</a>    <span class="macro">mock_env_url!</span>(<span class="string">"TWITCH_HELIX_EVENTSUB_URL"</span>, <span class="string">"https://api.twitch.tv/helix/"</span>);
-<a href=#198 id=198 data-nosnippet>198</a>
-<a href=#199 id=199 data-nosnippet>199</a><span class="doccomment">/// Location to twitch Eventsub WebSocket
-<a href=#200 id=200 data-nosnippet>200</a>///
-<a href=#201 id=201 data-nosnippet>201</a>/// Can be overriden when feature `mock_api` is enabled with environment variable `TWITCH_EVENTSUB_WEBSOCKET_URL`.
-<a href=#202 id=202 data-nosnippet>202</a></span><span class="attr">#[cfg(feature = <span class="string">"eventsub"</span>)]
-<a href=#203 id=203 data-nosnippet>203</a></span><span class="kw">pub static </span>TWITCH_EVENTSUB_WEBSOCKET_URL: once_cell::sync::Lazy&lt;url::Url&gt; = <span class="macro">mock_env_url!</span>(
-<a href=#204 id=204 data-nosnippet>204</a>    <span class="string">"TWITCH_EVENTSUB_WEBSOCKET_URL"</span>,
-<a href=#205 id=205 data-nosnippet>205</a>    <span class="string">"wss://eventsub.wss.twitch.tv/ws"
-<a href=#206 id=206 data-nosnippet>206</a></span>);
-<a href=#207 id=207 data-nosnippet>207</a>
-<a href=#208 id=208 data-nosnippet>208</a><span class="doccomment">/// Client for Twitch APIs.
-<a href=#209 id=209 data-nosnippet>209</a>///
-<a href=#210 id=210 data-nosnippet>210</a>/// Most [http clients][crate::HttpClient] will be able to use the `'static` lifetime
-<a href=#211 id=211 data-nosnippet>211</a>///
-<a href=#212 id=212 data-nosnippet>212</a>/// ```rust,no_run
-<a href=#213 id=213 data-nosnippet>213</a>/// # use twitch_api::{TwitchClient}; pub mod reqwest {pub type Client = twitch_api::client::DummyHttpClient;}
-<a href=#214 id=214 data-nosnippet>214</a>/// pub struct MyStruct {
-<a href=#215 id=215 data-nosnippet>215</a>///     twitch: TwitchClient&lt;'static, reqwest::Client&gt;,
-<a href=#216 id=216 data-nosnippet>216</a>///     token: twitch_oauth2::AppAccessToken,
-<a href=#217 id=217 data-nosnippet>217</a>/// }
-<a href=#218 id=218 data-nosnippet>218</a>/// // etc
-<a href=#219 id=219 data-nosnippet>219</a>/// ```
-<a href=#220 id=220 data-nosnippet>220</a>///
-<a href=#221 id=221 data-nosnippet>221</a>/// See [`client`] for implemented clients, you can also define your own if needed.
-<a href=#222 id=222 data-nosnippet>222</a></span><span class="attr">#[cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))]
-<a href=#223 id=223 data-nosnippet>223</a>#[derive(Clone)]
-<a href=#224 id=224 data-nosnippet>224</a>#[non_exhaustive]
-<a href=#225 id=225 data-nosnippet>225</a></span><span class="kw">pub struct </span>TwitchClient&lt;<span class="lifetime">'a</span>, C&gt;
-<a href=#226 id=226 data-nosnippet>226</a><span class="kw">where </span>C: HttpClient + <span class="lifetime">'a </span>{
-<a href=#227 id=227 data-nosnippet>227</a>    <span class="doccomment">/// Helix endpoint. See [`helix`]
+<a href=#194 id=194 data-nosnippet>194</a>/// Can be overriden when feature `mock_api` is enabled with environment variable `TWITCH_EVENTSUB_WEBSOCKET_URL`.
+<a href=#195 id=195 data-nosnippet>195</a></span><span class="attr">#[cfg(feature = <span class="string">"eventsub"</span>)]
+<a href=#196 id=196 data-nosnippet>196</a></span><span class="kw">pub static </span>TWITCH_EVENTSUB_WEBSOCKET_URL: once_cell::sync::Lazy&lt;url::Url&gt; = <span class="macro">mock_env_url!</span>(
+<a href=#197 id=197 data-nosnippet>197</a>    <span class="string">"TWITCH_EVENTSUB_WEBSOCKET_URL"</span>,
+<a href=#198 id=198 data-nosnippet>198</a>    <span class="string">"wss://eventsub.wss.twitch.tv/ws"
+<a href=#199 id=199 data-nosnippet>199</a></span>);
+<a href=#200 id=200 data-nosnippet>200</a>
+<a href=#201 id=201 data-nosnippet>201</a><span class="doccomment">/// Client for Twitch APIs.
+<a href=#202 id=202 data-nosnippet>202</a>///
+<a href=#203 id=203 data-nosnippet>203</a>/// Most [http clients][crate::HttpClient] will be able to use the `'static` lifetime
+<a href=#204 id=204 data-nosnippet>204</a>///
+<a href=#205 id=205 data-nosnippet>205</a>/// ```rust,no_run
+<a href=#206 id=206 data-nosnippet>206</a>/// # use twitch_api::{TwitchClient}; pub mod reqwest {pub type Client = twitch_api::client::DummyHttpClient;}
+<a href=#207 id=207 data-nosnippet>207</a>/// pub struct MyStruct {
+<a href=#208 id=208 data-nosnippet>208</a>///     twitch: TwitchClient&lt;'static, reqwest::Client&gt;,
+<a href=#209 id=209 data-nosnippet>209</a>///     token: twitch_oauth2::AppAccessToken,
+<a href=#210 id=210 data-nosnippet>210</a>/// }
+<a href=#211 id=211 data-nosnippet>211</a>/// // etc
+<a href=#212 id=212 data-nosnippet>212</a>/// ```
+<a href=#213 id=213 data-nosnippet>213</a>///
+<a href=#214 id=214 data-nosnippet>214</a>/// See [`client`] for implemented clients, you can also define your own if needed.
+<a href=#215 id=215 data-nosnippet>215</a></span><span class="attr">#[cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))]
+<a href=#216 id=216 data-nosnippet>216</a>#[derive(Clone)]
+<a href=#217 id=217 data-nosnippet>217</a>#[non_exhaustive]
+<a href=#218 id=218 data-nosnippet>218</a></span><span class="kw">pub struct </span>TwitchClient&lt;<span class="lifetime">'a</span>, C&gt;
+<a href=#219 id=219 data-nosnippet>219</a><span class="kw">where </span>C: HttpClient + <span class="lifetime">'a </span>{
+<a href=#220 id=220 data-nosnippet>220</a>    <span class="doccomment">/// Helix endpoint. See [`helix`]
+<a href=#221 id=221 data-nosnippet>221</a>    </span><span class="attr">#[cfg(feature = <span class="string">"helix"</span>)]
+<a href=#222 id=222 data-nosnippet>222</a>    </span><span class="kw">pub </span>helix: HelixClient&lt;<span class="lifetime">'a</span>, C&gt;,
+<a href=#223 id=223 data-nosnippet>223</a>}
+<a href=#224 id=224 data-nosnippet>224</a>
+<a href=#225 id=225 data-nosnippet>225</a><span class="attr">#[cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))]
+<a href=#226 id=226 data-nosnippet>226</a></span><span class="kw">impl</span>&lt;C: HttpClient + <span class="lifetime">'static</span>&gt; TwitchClient&lt;<span class="lifetime">'static</span>, C&gt; {
+<a href=#227 id=227 data-nosnippet>227</a>    <span class="doccomment">/// Create a new [`TwitchClient`]
 <a href=#228 id=228 data-nosnippet>228</a>    </span><span class="attr">#[cfg(feature = <span class="string">"helix"</span>)]
-<a href=#229 id=229 data-nosnippet>229</a>    </span><span class="kw">pub </span>helix: HelixClient&lt;<span class="lifetime">'a</span>, C&gt;,
-<a href=#230 id=230 data-nosnippet>230</a>}
-<a href=#231 id=231 data-nosnippet>231</a>
-<a href=#232 id=232 data-nosnippet>232</a><span class="attr">#[cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))]
-<a href=#233 id=233 data-nosnippet>233</a></span><span class="kw">impl</span>&lt;C: HttpClient + <span class="lifetime">'static</span>&gt; TwitchClient&lt;<span class="lifetime">'static</span>, C&gt; {
-<a href=#234 id=234 data-nosnippet>234</a>    <span class="doccomment">/// Create a new [`TwitchClient`]
-<a href=#235 id=235 data-nosnippet>235</a>    </span><span class="attr">#[cfg(feature = <span class="string">"helix"</span>)]
-<a href=#236 id=236 data-nosnippet>236</a>    </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self
-<a href=#237 id=237 data-nosnippet>237</a>    </span><span class="kw">where </span>C: Clone + client::ClientDefault&lt;<span class="lifetime">'static</span>&gt; {
-<a href=#238 id=238 data-nosnippet>238</a>        <span class="kw">let </span>client = C::default_client();
-<a href=#239 id=239 data-nosnippet>239</a>        <span class="self">Self</span>::with_client(client)
-<a href=#240 id=240 data-nosnippet>240</a>    }
+<a href=#229 id=229 data-nosnippet>229</a>    </span><span class="kw">pub fn </span>new() -&gt; <span class="self">Self
+<a href=#230 id=230 data-nosnippet>230</a>    </span><span class="kw">where </span>C: Clone + client::ClientDefault&lt;<span class="lifetime">'static</span>&gt; {
+<a href=#231 id=231 data-nosnippet>231</a>        <span class="kw">let </span>client = C::default_client();
+<a href=#232 id=232 data-nosnippet>232</a>        <span class="self">Self</span>::with_client(client)
+<a href=#233 id=233 data-nosnippet>233</a>    }
+<a href=#234 id=234 data-nosnippet>234</a>}
+<a href=#235 id=235 data-nosnippet>235</a>
+<a href=#236 id=236 data-nosnippet>236</a><span class="attr">#[cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))]
+<a href=#237 id=237 data-nosnippet>237</a></span><span class="kw">impl</span>&lt;C: HttpClient + client::ClientDefault&lt;<span class="lifetime">'static</span>&gt; + <span class="lifetime">'static</span>&gt; Default
+<a href=#238 id=238 data-nosnippet>238</a>    <span class="kw">for </span>TwitchClient&lt;<span class="lifetime">'static</span>, C&gt;
+<a href=#239 id=239 data-nosnippet>239</a>{
+<a href=#240 id=240 data-nosnippet>240</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{ <span class="self">Self</span>::new() }
 <a href=#241 id=241 data-nosnippet>241</a>}
 <a href=#242 id=242 data-nosnippet>242</a>
 <a href=#243 id=243 data-nosnippet>243</a><span class="attr">#[cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))]
-<a href=#244 id=244 data-nosnippet>244</a></span><span class="kw">impl</span>&lt;C: HttpClient + client::ClientDefault&lt;<span class="lifetime">'static</span>&gt; + <span class="lifetime">'static</span>&gt; Default
-<a href=#245 id=245 data-nosnippet>245</a>    <span class="kw">for </span>TwitchClient&lt;<span class="lifetime">'static</span>, C&gt;
-<a href=#246 id=246 data-nosnippet>246</a>{
-<a href=#247 id=247 data-nosnippet>247</a>    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{ <span class="self">Self</span>::new() }
-<a href=#248 id=248 data-nosnippet>248</a>}
-<a href=#249 id=249 data-nosnippet>249</a>
-<a href=#250 id=250 data-nosnippet>250</a><span class="attr">#[cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))]
-<a href=#251 id=251 data-nosnippet>251</a></span><span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, C: HttpClient + <span class="lifetime">'a</span>&gt; TwitchClient&lt;<span class="lifetime">'a</span>, C&gt; {
-<a href=#252 id=252 data-nosnippet>252</a>    <span class="doccomment">/// Create a new [`TwitchClient`] with an existing [`HttpClient`]
-<a href=#253 id=253 data-nosnippet>253</a>    </span><span class="attr">#[cfg_attr(nightly, doc(cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))))]
-<a href=#254 id=254 data-nosnippet>254</a>    #[cfg(feature = <span class="string">"helix"</span>)]
-<a href=#255 id=255 data-nosnippet>255</a>    </span><span class="kw">pub const fn </span>with_client(client: C) -&gt; <span class="self">Self
-<a href=#256 id=256 data-nosnippet>256</a>    </span><span class="kw">where </span>C: Clone + <span class="lifetime">'a </span>{
-<a href=#257 id=257 data-nosnippet>257</a>        TwitchClient {
-<a href=#258 id=258 data-nosnippet>258</a>            <span class="attr">#[cfg(feature = <span class="string">"helix"</span>)]
-<a href=#259 id=259 data-nosnippet>259</a>            </span>helix: HelixClient::with_client(client),
-<a href=#260 id=260 data-nosnippet>260</a>        }
-<a href=#261 id=261 data-nosnippet>261</a>    }
-<a href=#262 id=262 data-nosnippet>262</a>
-<a href=#263 id=263 data-nosnippet>263</a>    <span class="doccomment">/// Retrieve a reference of the [`HttpClient`] inside this [`TwitchClient`]
-<a href=#264 id=264 data-nosnippet>264</a>    </span><span class="kw">pub const fn </span>get_client(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>C { <span class="self">self</span>.helix.get_client() }
-<a href=#265 id=265 data-nosnippet>265</a>}
-<a href=#266 id=266 data-nosnippet>266</a>
-<a href=#267 id=267 data-nosnippet>267</a><span class="doccomment">/// A deserialization error
-<a href=#268 id=268 data-nosnippet>268</a></span><span class="attr">#[cfg(feature = <span class="string">"serde_json"</span>)]
-<a href=#269 id=269 data-nosnippet>269</a>#[derive(Debug, thiserror::Error, displaydoc::Display)]
-<a href=#270 id=270 data-nosnippet>270</a>#[non_exhaustive]
-<a href=#271 id=271 data-nosnippet>271</a></span><span class="kw">pub enum </span>DeserError {
-<a href=#272 id=272 data-nosnippet>272</a>    <span class="doccomment">/// could not deserialize, error on [{path}]. {error}
-<a href=#273 id=273 data-nosnippet>273</a>    </span>PathError {
-<a href=#274 id=274 data-nosnippet>274</a>        <span class="doccomment">/// Path to where the erroring key/value is
-<a href=#275 id=275 data-nosnippet>275</a>        </span>path: String,
-<a href=#276 id=276 data-nosnippet>276</a>        <span class="doccomment">/// Error for the key/value
-<a href=#277 id=277 data-nosnippet>277</a>        </span><span class="attr">#[source]
-<a href=#278 id=278 data-nosnippet>278</a>        </span>error: serde_json::Error,
-<a href=#279 id=279 data-nosnippet>279</a>    },
-<a href=#280 id=280 data-nosnippet>280</a>}
-<a href=#281 id=281 data-nosnippet>281</a>
-<a href=#282 id=282 data-nosnippet>282</a><span class="doccomment">/// Parse a string as `T`, logging ignored fields and giving a more detailed error message on parse errors
-<a href=#283 id=283 data-nosnippet>283</a>///
-<a href=#284 id=284 data-nosnippet>284</a>/// The log_ignored argument decides if a trace of ignored value should be emitted
-<a href=#285 id=285 data-nosnippet>285</a></span><span class="attr">#[cfg(feature = <span class="string">"serde_json"</span>)]
-<a href=#286 id=286 data-nosnippet>286</a></span><span class="kw">pub fn </span>parse_json&lt;<span class="lifetime">'a</span>, T: serde::Deserialize&lt;<span class="lifetime">'a</span>&gt;&gt;(
-<a href=#287 id=287 data-nosnippet>287</a>    s: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
-<a href=#288 id=288 data-nosnippet>288</a>    <span class="attr">#[allow(unused_variables)] </span>log_ignored: bool,
-<a href=#289 id=289 data-nosnippet>289</a>) -&gt; <span class="prelude-ty">Result</span>&lt;T, DeserError&gt; {
-<a href=#290 id=290 data-nosnippet>290</a>    <span class="attr">#[cfg(feature = <span class="string">"trace_unknown_fields"</span>)]
-<a href=#291 id=291 data-nosnippet>291</a>    </span>{
-<a href=#292 id=292 data-nosnippet>292</a>        <span class="kw">let </span>jd = <span class="kw-2">&amp;mut </span>serde_json::Deserializer::from_str(s);
-<a href=#293 id=293 data-nosnippet>293</a>        <span class="kw">let </span><span class="kw-2">mut </span>track = serde_path_to_error::Track::new();
-<a href=#294 id=294 data-nosnippet>294</a>        <span class="kw">let </span>pathd = serde_path_to_error::Deserializer::new(jd, <span class="kw-2">&amp;mut </span>track);
-<a href=#295 id=295 data-nosnippet>295</a>        <span class="kw">if </span>log_ignored {
-<a href=#296 id=296 data-nosnippet>296</a>            <span class="kw">let </span><span class="kw-2">mut </span>fun = |path: serde_ignored::Path| {
-<a href=#297 id=297 data-nosnippet>297</a>                <span class="macro">tracing::warn!</span>(key=%path,<span class="string">"Found ignored key"</span>);
-<a href=#298 id=298 data-nosnippet>298</a>            };
-<a href=#299 id=299 data-nosnippet>299</a>            serde_ignored::deserialize(pathd, <span class="kw-2">&amp;mut </span>fun).map_err(|e| DeserError::PathError {
-<a href=#300 id=300 data-nosnippet>300</a>                path: track.path().to_string(),
-<a href=#301 id=301 data-nosnippet>301</a>                error: e,
-<a href=#302 id=302 data-nosnippet>302</a>            })
-<a href=#303 id=303 data-nosnippet>303</a>        } <span class="kw">else </span>{
-<a href=#304 id=304 data-nosnippet>304</a>            T::deserialize(pathd).map_err(|e| DeserError::PathError {
-<a href=#305 id=305 data-nosnippet>305</a>                path: track.path().to_string(),
-<a href=#306 id=306 data-nosnippet>306</a>                error: e,
-<a href=#307 id=307 data-nosnippet>307</a>            })
-<a href=#308 id=308 data-nosnippet>308</a>        }
-<a href=#309 id=309 data-nosnippet>309</a>    }
-<a href=#310 id=310 data-nosnippet>310</a>    <span class="attr">#[cfg(not(feature = <span class="string">"trace_unknown_fields"</span>))]
-<a href=#311 id=311 data-nosnippet>311</a>    </span>{
-<a href=#312 id=312 data-nosnippet>312</a>        <span class="kw">let </span>jd = <span class="kw-2">&amp;mut </span>serde_json::Deserializer::from_str(s);
-<a href=#313 id=313 data-nosnippet>313</a>        serde_path_to_error::deserialize(jd).map_err(|e| DeserError::PathError {
-<a href=#314 id=314 data-nosnippet>314</a>            path: e.path().to_string(),
-<a href=#315 id=315 data-nosnippet>315</a>            error: e.into_inner(),
-<a href=#316 id=316 data-nosnippet>316</a>        })
-<a href=#317 id=317 data-nosnippet>317</a>    }
-<a href=#318 id=318 data-nosnippet>318</a>}
-<a href=#319 id=319 data-nosnippet>319</a>
-<a href=#320 id=320 data-nosnippet>320</a><span class="doccomment">/// Parse a json Value as `T`, logging ignored fields and giving a more detailed error message on parse errors
-<a href=#321 id=321 data-nosnippet>321</a></span><span class="attr">#[cfg(feature = <span class="string">"serde_json"</span>)]
-<a href=#322 id=322 data-nosnippet>322</a></span><span class="kw">pub fn </span>parse_json_value&lt;<span class="lifetime">'a</span>, T: serde::Deserialize&lt;<span class="lifetime">'a</span>&gt;&gt;(
-<a href=#323 id=323 data-nosnippet>323</a>    value: serde_json::Value,
-<a href=#324 id=324 data-nosnippet>324</a>    <span class="attr">#[allow(unused_variables)] </span>log_ignored: bool,
-<a href=#325 id=325 data-nosnippet>325</a>) -&gt; <span class="prelude-ty">Result</span>&lt;T, DeserError&gt; {
-<a href=#326 id=326 data-nosnippet>326</a>    <span class="attr">#[cfg(feature = <span class="string">"trace_unknown_fields"</span>)]
-<a href=#327 id=327 data-nosnippet>327</a>    </span>{
-<a href=#328 id=328 data-nosnippet>328</a>        <span class="kw">let </span>de = serde::de::IntoDeserializer::into_deserializer(value);
-<a href=#329 id=329 data-nosnippet>329</a>        <span class="kw">let </span><span class="kw-2">mut </span>track = serde_path_to_error::Track::new();
-<a href=#330 id=330 data-nosnippet>330</a>        <span class="kw">let </span>pathd = serde_path_to_error::Deserializer::new(de, <span class="kw-2">&amp;mut </span>track);
-<a href=#331 id=331 data-nosnippet>331</a>        <span class="kw">if </span>log_ignored {
-<a href=#332 id=332 data-nosnippet>332</a>            <span class="kw">let </span><span class="kw-2">mut </span>fun = |path: serde_ignored::Path| {
-<a href=#333 id=333 data-nosnippet>333</a>                <span class="macro">tracing::warn!</span>(key=%path,<span class="string">"Found ignored key"</span>);
-<a href=#334 id=334 data-nosnippet>334</a>            };
-<a href=#335 id=335 data-nosnippet>335</a>            serde_ignored::deserialize(pathd, <span class="kw-2">&amp;mut </span>fun).map_err(|e| DeserError::PathError {
-<a href=#336 id=336 data-nosnippet>336</a>                path: track.path().to_string(),
-<a href=#337 id=337 data-nosnippet>337</a>                error: e,
-<a href=#338 id=338 data-nosnippet>338</a>            })
-<a href=#339 id=339 data-nosnippet>339</a>        } <span class="kw">else </span>{
-<a href=#340 id=340 data-nosnippet>340</a>            T::deserialize(pathd).map_err(|e| DeserError::PathError {
-<a href=#341 id=341 data-nosnippet>341</a>                path: track.path().to_string(),
-<a href=#342 id=342 data-nosnippet>342</a>                error: e,
-<a href=#343 id=343 data-nosnippet>343</a>            })
-<a href=#344 id=344 data-nosnippet>344</a>        }
-<a href=#345 id=345 data-nosnippet>345</a>    }
-<a href=#346 id=346 data-nosnippet>346</a>    <span class="attr">#[cfg(not(feature = <span class="string">"trace_unknown_fields"</span>))]
-<a href=#347 id=347 data-nosnippet>347</a>    </span>{
-<a href=#348 id=348 data-nosnippet>348</a>        <span class="kw">let </span>de = serde::de::IntoDeserializer::into_deserializer(value);
-<a href=#349 id=349 data-nosnippet>349</a>        serde_path_to_error::deserialize(de).map_err(|e| DeserError::PathError {
-<a href=#350 id=350 data-nosnippet>350</a>            path: e.path().to_string(),
-<a href=#351 id=351 data-nosnippet>351</a>            error: e.into_inner(),
-<a href=#352 id=352 data-nosnippet>352</a>        })
-<a href=#353 id=353 data-nosnippet>353</a>    }
-<a href=#354 id=354 data-nosnippet>354</a>}
-<a href=#355 id=355 data-nosnippet>355</a>
-<a href=#356 id=356 data-nosnippet>356</a><span class="attr">#[cfg(any(feature = <span class="string">"helix"</span>, feature = <span class="string">"pubsub"</span>, feature = <span class="string">"eventsub"</span>))]
-<a href=#357 id=357 data-nosnippet>357</a>#[allow(dead_code)]
-<a href=#358 id=358 data-nosnippet>358</a></span><span class="doccomment">/// Deserialize 'null' as &lt;T as Default&gt;::Default
-<a href=#359 id=359 data-nosnippet>359</a></span><span class="kw">fn </span>deserialize_default_from_null&lt;<span class="lifetime">'de</span>, D, T&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;T, D::Error&gt;
-<a href=#360 id=360 data-nosnippet>360</a><span class="kw">where
-<a href=#361 id=361 data-nosnippet>361</a>    </span>D: serde::Deserializer&lt;<span class="lifetime">'de</span>&gt;,
-<a href=#362 id=362 data-nosnippet>362</a>    T: serde::Deserialize&lt;<span class="lifetime">'de</span>&gt; + Default, {
-<a href=#363 id=363 data-nosnippet>363</a>    <span class="kw">use </span>serde::Deserialize;
-<a href=#364 id=364 data-nosnippet>364</a>    <span class="prelude-val">Ok</span>(Option::deserialize(deserializer)<span class="question-mark">?</span>.unwrap_or_default())
-<a href=#365 id=365 data-nosnippet>365</a>}
-<a href=#366 id=366 data-nosnippet>366</a>
-<a href=#367 id=367 data-nosnippet>367</a><span class="attr">#[cfg(any(feature = <span class="string">"helix"</span>, feature = <span class="string">"eventsub"</span>))]
-<a href=#368 id=368 data-nosnippet>368</a>#[allow(dead_code)]
-<a href=#369 id=369 data-nosnippet>369</a></span><span class="doccomment">/// Deserialize "" as &lt;T as Default&gt;::Default
-<a href=#370 id=370 data-nosnippet>370</a></span><span class="kw">fn </span>deserialize_none_from_empty_string&lt;<span class="lifetime">'de</span>, D, S&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;S&gt;, D::Error&gt;
-<a href=#371 id=371 data-nosnippet>371</a><span class="kw">where
-<a href=#372 id=372 data-nosnippet>372</a>    </span>D: serde::Deserializer&lt;<span class="lifetime">'de</span>&gt;,
-<a href=#373 id=373 data-nosnippet>373</a>    S: serde::Deserialize&lt;<span class="lifetime">'de</span>&gt;, {
-<a href=#374 id=374 data-nosnippet>374</a>    <span class="kw">use </span>serde::de::IntoDeserializer;
-<a href=#375 id=375 data-nosnippet>375</a>    <span class="kw">struct </span>Inner&lt;S&gt;(std::marker::PhantomData&lt;S&gt;);
-<a href=#376 id=376 data-nosnippet>376</a>    <span class="kw">impl</span>&lt;<span class="lifetime">'de</span>, S&gt; serde::de::Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Inner&lt;S&gt;
-<a href=#377 id=377 data-nosnippet>377</a>    <span class="kw">where </span>S: serde::Deserialize&lt;<span class="lifetime">'de</span>&gt;
-<a href=#378 id=378 data-nosnippet>378</a>    {
-<a href=#379 id=379 data-nosnippet>379</a>        <span class="kw">type </span>Value = <span class="prelude-ty">Option</span>&lt;S&gt;;
-<a href=#380 id=380 data-nosnippet>380</a>
-<a href=#381 id=381 data-nosnippet>381</a>        <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
-<a href=#382 id=382 data-nosnippet>382</a>            formatter.write_str(<span class="string">"any string"</span>)
-<a href=#383 id=383 data-nosnippet>383</a>        }
-<a href=#384 id=384 data-nosnippet>384</a>
-<a href=#385 id=385 data-nosnippet>385</a>        <span class="kw">fn </span>visit_str&lt;E&gt;(<span class="self">self</span>, value: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
-<a href=#386 id=386 data-nosnippet>386</a>        <span class="kw">where </span>E: serde::de::Error {
-<a href=#387 id=387 data-nosnippet>387</a>            <span class="kw">match </span>value {
-<a href=#388 id=388 data-nosnippet>388</a>                <span class="string">"" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
-<a href=#389 id=389 data-nosnippet>389</a>                v =&gt; S::deserialize(v.into_deserializer()).map(<span class="prelude-val">Some</span>),
-<a href=#390 id=390 data-nosnippet>390</a>            }
-<a href=#391 id=391 data-nosnippet>391</a>        }
-<a href=#392 id=392 data-nosnippet>392</a>
-<a href=#393 id=393 data-nosnippet>393</a>        <span class="kw">fn </span>visit_string&lt;E&gt;(<span class="self">self</span>, value: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
-<a href=#394 id=394 data-nosnippet>394</a>        <span class="kw">where </span>E: serde::de::Error {
-<a href=#395 id=395 data-nosnippet>395</a>            <span class="kw">match </span><span class="kw-2">&amp;*</span>value {
-<a href=#396 id=396 data-nosnippet>396</a>                <span class="string">"" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
-<a href=#397 id=397 data-nosnippet>397</a>                v =&gt; S::deserialize(v.into_deserializer()).map(<span class="prelude-val">Some</span>),
-<a href=#398 id=398 data-nosnippet>398</a>            }
-<a href=#399 id=399 data-nosnippet>399</a>        }
-<a href=#400 id=400 data-nosnippet>400</a>
-<a href=#401 id=401 data-nosnippet>401</a>        <span class="kw">fn </span>visit_unit&lt;E&gt;(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
-<a href=#402 id=402 data-nosnippet>402</a>        <span class="kw">where </span>E: serde::de::Error {
-<a href=#403 id=403 data-nosnippet>403</a>            <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
-<a href=#404 id=404 data-nosnippet>404</a>        }
-<a href=#405 id=405 data-nosnippet>405</a>    }
-<a href=#406 id=406 data-nosnippet>406</a>
-<a href=#407 id=407 data-nosnippet>407</a>    deserializer.deserialize_any(Inner(std::marker::PhantomData))
-<a href=#408 id=408 data-nosnippet>408</a>}
-<a href=#409 id=409 data-nosnippet>409</a>
-<a href=#410 id=410 data-nosnippet>410</a><span class="doccomment">/// Helper functions for tests
-<a href=#411 id=411 data-nosnippet>411</a></span><span class="attr">#[cfg(test)]
-<a href=#412 id=412 data-nosnippet>412</a></span><span class="kw">pub mod </span>tests {
-<a href=#413 id=413 data-nosnippet>413</a>    <span class="doccomment">/// Checks that `val` can be serialized and deserialized to `T` with JSON and CBOR.
-<a href=#414 id=414 data-nosnippet>414</a>    ///
-<a href=#415 id=415 data-nosnippet>415</a>    /// In pseudocode, this tests `deserialize(serialize(val))`.
-<a href=#416 id=416 data-nosnippet>416</a>    </span><span class="attr">#[track_caller]
-<a href=#417 id=417 data-nosnippet>417</a>    </span><span class="kw">pub fn </span>roundtrip&lt;T: serde::de::DeserializeOwned + serde::Serialize&gt;(val: <span class="kw-2">&amp;</span>T) {
-<a href=#418 id=418 data-nosnippet>418</a>        serde_json::from_slice::&lt;T&gt;(<span class="kw-2">&amp;</span>serde_json::to_vec(val).expect(<span class="string">"could not make into json"</span>))
-<a href=#419 id=419 data-nosnippet>419</a>            .expect(<span class="string">"could not convert back from json"</span>);
-<a href=#420 id=420 data-nosnippet>420</a>        serde_cbor::from_slice::&lt;T&gt;(
-<a href=#421 id=421 data-nosnippet>421</a>            <span class="kw-2">&amp;</span>serde_cbor::to_vec(val).expect(<span class="string">"could not make into cbor bytes"</span>),
-<a href=#422 id=422 data-nosnippet>422</a>        )
-<a href=#423 id=423 data-nosnippet>423</a>        .expect(<span class="string">"could not convert back from cbor"</span>);
-<a href=#424 id=424 data-nosnippet>424</a>    }
-<a href=#425 id=425 data-nosnippet>425</a>}</code></pre></div></section></main></body></html>
+<a href=#244 id=244 data-nosnippet>244</a></span><span class="kw">impl</span>&lt;<span class="lifetime">'a</span>, C: HttpClient + <span class="lifetime">'a</span>&gt; TwitchClient&lt;<span class="lifetime">'a</span>, C&gt; {
+<a href=#245 id=245 data-nosnippet>245</a>    <span class="doccomment">/// Create a new [`TwitchClient`] with an existing [`HttpClient`]
+<a href=#246 id=246 data-nosnippet>246</a>    </span><span class="attr">#[cfg_attr(nightly, doc(cfg(all(feature = <span class="string">"client"</span>, feature = <span class="string">"helix"</span>))))]
+<a href=#247 id=247 data-nosnippet>247</a>    #[cfg(feature = <span class="string">"helix"</span>)]
+<a href=#248 id=248 data-nosnippet>248</a>    </span><span class="kw">pub const fn </span>with_client(client: C) -&gt; <span class="self">Self
+<a href=#249 id=249 data-nosnippet>249</a>    </span><span class="kw">where </span>C: Clone + <span class="lifetime">'a </span>{
+<a href=#250 id=250 data-nosnippet>250</a>        TwitchClient {
+<a href=#251 id=251 data-nosnippet>251</a>            <span class="attr">#[cfg(feature = <span class="string">"helix"</span>)]
+<a href=#252 id=252 data-nosnippet>252</a>            </span>helix: HelixClient::with_client(client),
+<a href=#253 id=253 data-nosnippet>253</a>        }
+<a href=#254 id=254 data-nosnippet>254</a>    }
+<a href=#255 id=255 data-nosnippet>255</a>
+<a href=#256 id=256 data-nosnippet>256</a>    <span class="doccomment">/// Retrieve a reference of the [`HttpClient`] inside this [`TwitchClient`]
+<a href=#257 id=257 data-nosnippet>257</a>    </span><span class="kw">pub const fn </span>get_client(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>C { <span class="self">self</span>.helix.get_client() }
+<a href=#258 id=258 data-nosnippet>258</a>}
+<a href=#259 id=259 data-nosnippet>259</a>
+<a href=#260 id=260 data-nosnippet>260</a><span class="doccomment">/// A deserialization error
+<a href=#261 id=261 data-nosnippet>261</a></span><span class="attr">#[cfg(feature = <span class="string">"serde_json"</span>)]
+<a href=#262 id=262 data-nosnippet>262</a>#[derive(Debug, thiserror::Error, displaydoc::Display)]
+<a href=#263 id=263 data-nosnippet>263</a>#[non_exhaustive]
+<a href=#264 id=264 data-nosnippet>264</a></span><span class="kw">pub enum </span>DeserError {
+<a href=#265 id=265 data-nosnippet>265</a>    <span class="doccomment">/// could not deserialize, error on [{path}]. {error}
+<a href=#266 id=266 data-nosnippet>266</a>    </span>PathError {
+<a href=#267 id=267 data-nosnippet>267</a>        <span class="doccomment">/// Path to where the erroring key/value is
+<a href=#268 id=268 data-nosnippet>268</a>        </span>path: String,
+<a href=#269 id=269 data-nosnippet>269</a>        <span class="doccomment">/// Error for the key/value
+<a href=#270 id=270 data-nosnippet>270</a>        </span><span class="attr">#[source]
+<a href=#271 id=271 data-nosnippet>271</a>        </span>error: serde_json::Error,
+<a href=#272 id=272 data-nosnippet>272</a>    },
+<a href=#273 id=273 data-nosnippet>273</a>}
+<a href=#274 id=274 data-nosnippet>274</a>
+<a href=#275 id=275 data-nosnippet>275</a><span class="doccomment">/// Parse a string as `T`, logging ignored fields and giving a more detailed error message on parse errors
+<a href=#276 id=276 data-nosnippet>276</a>///
+<a href=#277 id=277 data-nosnippet>277</a>/// The log_ignored argument decides if a trace of ignored value should be emitted
+<a href=#278 id=278 data-nosnippet>278</a></span><span class="attr">#[cfg(feature = <span class="string">"serde_json"</span>)]
+<a href=#279 id=279 data-nosnippet>279</a></span><span class="kw">pub fn </span>parse_json&lt;<span class="lifetime">'a</span>, T: serde::Deserialize&lt;<span class="lifetime">'a</span>&gt;&gt;(
+<a href=#280 id=280 data-nosnippet>280</a>    s: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
+<a href=#281 id=281 data-nosnippet>281</a>    <span class="attr">#[allow(unused_variables)] </span>log_ignored: bool,
+<a href=#282 id=282 data-nosnippet>282</a>) -&gt; <span class="prelude-ty">Result</span>&lt;T, DeserError&gt; {
+<a href=#283 id=283 data-nosnippet>283</a>    <span class="attr">#[cfg(feature = <span class="string">"trace_unknown_fields"</span>)]
+<a href=#284 id=284 data-nosnippet>284</a>    </span>{
+<a href=#285 id=285 data-nosnippet>285</a>        <span class="kw">let </span>jd = <span class="kw-2">&amp;mut </span>serde_json::Deserializer::from_str(s);
+<a href=#286 id=286 data-nosnippet>286</a>        <span class="kw">let </span><span class="kw-2">mut </span>track = serde_path_to_error::Track::new();
+<a href=#287 id=287 data-nosnippet>287</a>        <span class="kw">let </span>pathd = serde_path_to_error::Deserializer::new(jd, <span class="kw-2">&amp;mut </span>track);
+<a href=#288 id=288 data-nosnippet>288</a>        <span class="kw">if </span>log_ignored {
+<a href=#289 id=289 data-nosnippet>289</a>            <span class="kw">let </span><span class="kw-2">mut </span>fun = |path: serde_ignored::Path| {
+<a href=#290 id=290 data-nosnippet>290</a>                <span class="macro">tracing::warn!</span>(key=%path,<span class="string">"Found ignored key"</span>);
+<a href=#291 id=291 data-nosnippet>291</a>            };
+<a href=#292 id=292 data-nosnippet>292</a>            serde_ignored::deserialize(pathd, <span class="kw-2">&amp;mut </span>fun).map_err(|e| DeserError::PathError {
+<a href=#293 id=293 data-nosnippet>293</a>                path: track.path().to_string(),
+<a href=#294 id=294 data-nosnippet>294</a>                error: e,
+<a href=#295 id=295 data-nosnippet>295</a>            })
+<a href=#296 id=296 data-nosnippet>296</a>        } <span class="kw">else </span>{
+<a href=#297 id=297 data-nosnippet>297</a>            T::deserialize(pathd).map_err(|e| DeserError::PathError {
+<a href=#298 id=298 data-nosnippet>298</a>                path: track.path().to_string(),
+<a href=#299 id=299 data-nosnippet>299</a>                error: e,
+<a href=#300 id=300 data-nosnippet>300</a>            })
+<a href=#301 id=301 data-nosnippet>301</a>        }
+<a href=#302 id=302 data-nosnippet>302</a>    }
+<a href=#303 id=303 data-nosnippet>303</a>    <span class="attr">#[cfg(not(feature = <span class="string">"trace_unknown_fields"</span>))]
+<a href=#304 id=304 data-nosnippet>304</a>    </span>{
+<a href=#305 id=305 data-nosnippet>305</a>        <span class="kw">let </span>jd = <span class="kw-2">&amp;mut </span>serde_json::Deserializer::from_str(s);
+<a href=#306 id=306 data-nosnippet>306</a>        serde_path_to_error::deserialize(jd).map_err(|e| DeserError::PathError {
+<a href=#307 id=307 data-nosnippet>307</a>            path: e.path().to_string(),
+<a href=#308 id=308 data-nosnippet>308</a>            error: e.into_inner(),
+<a href=#309 id=309 data-nosnippet>309</a>        })
+<a href=#310 id=310 data-nosnippet>310</a>    }
+<a href=#311 id=311 data-nosnippet>311</a>}
+<a href=#312 id=312 data-nosnippet>312</a>
+<a href=#313 id=313 data-nosnippet>313</a><span class="doccomment">/// Parse a json Value as `T`, logging ignored fields and giving a more detailed error message on parse errors
+<a href=#314 id=314 data-nosnippet>314</a></span><span class="attr">#[cfg(feature = <span class="string">"serde_json"</span>)]
+<a href=#315 id=315 data-nosnippet>315</a></span><span class="kw">pub fn </span>parse_json_value&lt;<span class="lifetime">'a</span>, T: serde::Deserialize&lt;<span class="lifetime">'a</span>&gt;&gt;(
+<a href=#316 id=316 data-nosnippet>316</a>    value: serde_json::Value,
+<a href=#317 id=317 data-nosnippet>317</a>    <span class="attr">#[allow(unused_variables)] </span>log_ignored: bool,
+<a href=#318 id=318 data-nosnippet>318</a>) -&gt; <span class="prelude-ty">Result</span>&lt;T, DeserError&gt; {
+<a href=#319 id=319 data-nosnippet>319</a>    <span class="attr">#[cfg(feature = <span class="string">"trace_unknown_fields"</span>)]
+<a href=#320 id=320 data-nosnippet>320</a>    </span>{
+<a href=#321 id=321 data-nosnippet>321</a>        <span class="kw">let </span>de = serde::de::IntoDeserializer::into_deserializer(value);
+<a href=#322 id=322 data-nosnippet>322</a>        <span class="kw">let </span><span class="kw-2">mut </span>track = serde_path_to_error::Track::new();
+<a href=#323 id=323 data-nosnippet>323</a>        <span class="kw">let </span>pathd = serde_path_to_error::Deserializer::new(de, <span class="kw-2">&amp;mut </span>track);
+<a href=#324 id=324 data-nosnippet>324</a>        <span class="kw">if </span>log_ignored {
+<a href=#325 id=325 data-nosnippet>325</a>            <span class="kw">let </span><span class="kw-2">mut </span>fun = |path: serde_ignored::Path| {
+<a href=#326 id=326 data-nosnippet>326</a>                <span class="macro">tracing::warn!</span>(key=%path,<span class="string">"Found ignored key"</span>);
+<a href=#327 id=327 data-nosnippet>327</a>            };
+<a href=#328 id=328 data-nosnippet>328</a>            serde_ignored::deserialize(pathd, <span class="kw-2">&amp;mut </span>fun).map_err(|e| DeserError::PathError {
+<a href=#329 id=329 data-nosnippet>329</a>                path: track.path().to_string(),
+<a href=#330 id=330 data-nosnippet>330</a>                error: e,
+<a href=#331 id=331 data-nosnippet>331</a>            })
+<a href=#332 id=332 data-nosnippet>332</a>        } <span class="kw">else </span>{
+<a href=#333 id=333 data-nosnippet>333</a>            T::deserialize(pathd).map_err(|e| DeserError::PathError {
+<a href=#334 id=334 data-nosnippet>334</a>                path: track.path().to_string(),
+<a href=#335 id=335 data-nosnippet>335</a>                error: e,
+<a href=#336 id=336 data-nosnippet>336</a>            })
+<a href=#337 id=337 data-nosnippet>337</a>        }
+<a href=#338 id=338 data-nosnippet>338</a>    }
+<a href=#339 id=339 data-nosnippet>339</a>    <span class="attr">#[cfg(not(feature = <span class="string">"trace_unknown_fields"</span>))]
+<a href=#340 id=340 data-nosnippet>340</a>    </span>{
+<a href=#341 id=341 data-nosnippet>341</a>        <span class="kw">let </span>de = serde::de::IntoDeserializer::into_deserializer(value);
+<a href=#342 id=342 data-nosnippet>342</a>        serde_path_to_error::deserialize(de).map_err(|e| DeserError::PathError {
+<a href=#343 id=343 data-nosnippet>343</a>            path: e.path().to_string(),
+<a href=#344 id=344 data-nosnippet>344</a>            error: e.into_inner(),
+<a href=#345 id=345 data-nosnippet>345</a>        })
+<a href=#346 id=346 data-nosnippet>346</a>    }
+<a href=#347 id=347 data-nosnippet>347</a>}
+<a href=#348 id=348 data-nosnippet>348</a>
+<a href=#349 id=349 data-nosnippet>349</a><span class="attr">#[cfg(any(feature = <span class="string">"helix"</span>, feature = <span class="string">"pubsub"</span>, feature = <span class="string">"eventsub"</span>))]
+<a href=#350 id=350 data-nosnippet>350</a>#[allow(dead_code)]
+<a href=#351 id=351 data-nosnippet>351</a></span><span class="doccomment">/// Deserialize 'null' as &lt;T as Default&gt;::Default
+<a href=#352 id=352 data-nosnippet>352</a></span><span class="kw">fn </span>deserialize_default_from_null&lt;<span class="lifetime">'de</span>, D, T&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;T, D::Error&gt;
+<a href=#353 id=353 data-nosnippet>353</a><span class="kw">where
+<a href=#354 id=354 data-nosnippet>354</a>    </span>D: serde::Deserializer&lt;<span class="lifetime">'de</span>&gt;,
+<a href=#355 id=355 data-nosnippet>355</a>    T: serde::Deserialize&lt;<span class="lifetime">'de</span>&gt; + Default, {
+<a href=#356 id=356 data-nosnippet>356</a>    <span class="kw">use </span>serde::Deserialize;
+<a href=#357 id=357 data-nosnippet>357</a>    <span class="prelude-val">Ok</span>(Option::deserialize(deserializer)<span class="question-mark">?</span>.unwrap_or_default())
+<a href=#358 id=358 data-nosnippet>358</a>}
+<a href=#359 id=359 data-nosnippet>359</a>
+<a href=#360 id=360 data-nosnippet>360</a><span class="attr">#[cfg(any(feature = <span class="string">"helix"</span>, feature = <span class="string">"eventsub"</span>))]
+<a href=#361 id=361 data-nosnippet>361</a>#[allow(dead_code)]
+<a href=#362 id=362 data-nosnippet>362</a></span><span class="doccomment">/// Deserialize "" as &lt;T as Default&gt;::Default
+<a href=#363 id=363 data-nosnippet>363</a></span><span class="kw">fn </span>deserialize_none_from_empty_string&lt;<span class="lifetime">'de</span>, D, S&gt;(deserializer: D) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;S&gt;, D::Error&gt;
+<a href=#364 id=364 data-nosnippet>364</a><span class="kw">where
+<a href=#365 id=365 data-nosnippet>365</a>    </span>D: serde::Deserializer&lt;<span class="lifetime">'de</span>&gt;,
+<a href=#366 id=366 data-nosnippet>366</a>    S: serde::Deserialize&lt;<span class="lifetime">'de</span>&gt;, {
+<a href=#367 id=367 data-nosnippet>367</a>    <span class="kw">use </span>serde::de::IntoDeserializer;
+<a href=#368 id=368 data-nosnippet>368</a>    <span class="kw">struct </span>Inner&lt;S&gt;(std::marker::PhantomData&lt;S&gt;);
+<a href=#369 id=369 data-nosnippet>369</a>    <span class="kw">impl</span>&lt;<span class="lifetime">'de</span>, S&gt; serde::de::Visitor&lt;<span class="lifetime">'de</span>&gt; <span class="kw">for </span>Inner&lt;S&gt;
+<a href=#370 id=370 data-nosnippet>370</a>    <span class="kw">where </span>S: serde::Deserialize&lt;<span class="lifetime">'de</span>&gt;
+<a href=#371 id=371 data-nosnippet>371</a>    {
+<a href=#372 id=372 data-nosnippet>372</a>        <span class="kw">type </span>Value = <span class="prelude-ty">Option</span>&lt;S&gt;;
+<a href=#373 id=373 data-nosnippet>373</a>
+<a href=#374 id=374 data-nosnippet>374</a>        <span class="kw">fn </span>expecting(<span class="kw-2">&amp;</span><span class="self">self</span>, formatter: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; std::fmt::Result {
+<a href=#375 id=375 data-nosnippet>375</a>            formatter.write_str(<span class="string">"any string"</span>)
+<a href=#376 id=376 data-nosnippet>376</a>        }
+<a href=#377 id=377 data-nosnippet>377</a>
+<a href=#378 id=378 data-nosnippet>378</a>        <span class="kw">fn </span>visit_str&lt;E&gt;(<span class="self">self</span>, value: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
+<a href=#379 id=379 data-nosnippet>379</a>        <span class="kw">where </span>E: serde::de::Error {
+<a href=#380 id=380 data-nosnippet>380</a>            <span class="kw">match </span>value {
+<a href=#381 id=381 data-nosnippet>381</a>                <span class="string">"" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+<a href=#382 id=382 data-nosnippet>382</a>                v =&gt; S::deserialize(v.into_deserializer()).map(<span class="prelude-val">Some</span>),
+<a href=#383 id=383 data-nosnippet>383</a>            }
+<a href=#384 id=384 data-nosnippet>384</a>        }
+<a href=#385 id=385 data-nosnippet>385</a>
+<a href=#386 id=386 data-nosnippet>386</a>        <span class="kw">fn </span>visit_string&lt;E&gt;(<span class="self">self</span>, value: String) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
+<a href=#387 id=387 data-nosnippet>387</a>        <span class="kw">where </span>E: serde::de::Error {
+<a href=#388 id=388 data-nosnippet>388</a>            <span class="kw">match </span><span class="kw-2">&amp;*</span>value {
+<a href=#389 id=389 data-nosnippet>389</a>                <span class="string">"" </span>=&gt; <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>),
+<a href=#390 id=390 data-nosnippet>390</a>                v =&gt; S::deserialize(v.into_deserializer()).map(<span class="prelude-val">Some</span>),
+<a href=#391 id=391 data-nosnippet>391</a>            }
+<a href=#392 id=392 data-nosnippet>392</a>        }
+<a href=#393 id=393 data-nosnippet>393</a>
+<a href=#394 id=394 data-nosnippet>394</a>        <span class="kw">fn </span>visit_unit&lt;E&gt;(<span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="self">Self</span>::Value, E&gt;
+<a href=#395 id=395 data-nosnippet>395</a>        <span class="kw">where </span>E: serde::de::Error {
+<a href=#396 id=396 data-nosnippet>396</a>            <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
+<a href=#397 id=397 data-nosnippet>397</a>        }
+<a href=#398 id=398 data-nosnippet>398</a>    }
+<a href=#399 id=399 data-nosnippet>399</a>
+<a href=#400 id=400 data-nosnippet>400</a>    deserializer.deserialize_any(Inner(std::marker::PhantomData))
+<a href=#401 id=401 data-nosnippet>401</a>}
+<a href=#402 id=402 data-nosnippet>402</a>
+<a href=#403 id=403 data-nosnippet>403</a><span class="doccomment">/// Helper functions for tests
+<a href=#404 id=404 data-nosnippet>404</a></span><span class="attr">#[cfg(test)]
+<a href=#405 id=405 data-nosnippet>405</a></span><span class="kw">pub mod </span>tests {
+<a href=#406 id=406 data-nosnippet>406</a>    <span class="doccomment">/// Checks that `val` can be serialized and deserialized to `T` with JSON and CBOR.
+<a href=#407 id=407 data-nosnippet>407</a>    ///
+<a href=#408 id=408 data-nosnippet>408</a>    /// In pseudocode, this tests `deserialize(serialize(val))`.
+<a href=#409 id=409 data-nosnippet>409</a>    </span><span class="attr">#[track_caller]
+<a href=#410 id=410 data-nosnippet>410</a>    </span><span class="kw">pub fn </span>roundtrip&lt;T: serde::de::DeserializeOwned + serde::Serialize&gt;(val: <span class="kw-2">&amp;</span>T) {
+<a href=#411 id=411 data-nosnippet>411</a>        serde_json::from_slice::&lt;T&gt;(<span class="kw-2">&amp;</span>serde_json::to_vec(val).expect(<span class="string">"could not make into json"</span>))
+<a href=#412 id=412 data-nosnippet>412</a>            .expect(<span class="string">"could not convert back from json"</span>);
+<a href=#413 id=413 data-nosnippet>413</a>        serde_cbor::from_slice::&lt;T&gt;(
+<a href=#414 id=414 data-nosnippet>414</a>            <span class="kw-2">&amp;</span>serde_cbor::to_vec(val).expect(<span class="string">"could not make into cbor bytes"</span>),
+<a href=#415 id=415 data-nosnippet>415</a>        )
+<a href=#416 id=416 data-nosnippet>416</a>        .expect(<span class="string">"could not convert back from cbor"</span>);
+<a href=#417 id=417 data-nosnippet>417</a>    }
+<a href=#418 id=418 data-nosnippet>418</a>}</code></pre></div></section></main></body></html>

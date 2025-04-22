@@ -60,7 +60,7 @@
 <a href=#60 id=60 data-nosnippet>60</a>
 <a href=#61 id=61 data-nosnippet>61</a><span class="kw">impl</span>&lt;<span class="lifetime">'a</span>&gt; UpdateUserRequest&lt;<span class="lifetime">'a</span>&gt; {
 <a href=#62 id=62 data-nosnippet>62</a>    <span class="doccomment">/// Update nothing (returns the current user)
-<a href=#63 id=63 data-nosnippet>63</a>    </span><span class="kw">pub fn </span>empty() -&gt; <span class="self">Self </span>{ <span class="self">Self </span>{ description: <span class="prelude-val">None </span>} }
+<a href=#63 id=63 data-nosnippet>63</a>    </span><span class="kw">pub const fn </span>empty() -&gt; <span class="self">Self </span>{ <span class="self">Self </span>{ description: <span class="prelude-val">None </span>} }
 <a href=#64 id=64 data-nosnippet>64</a>
 <a href=#65 id=65 data-nosnippet>65</a>    <span class="doccomment">/// Update the description of the current user
 <a href=#66 id=66 data-nosnippet>66</a>    </span><span class="kw">pub fn </span>description(description: <span class="kw">impl </span>Into&lt;Cow&lt;<span class="lifetime">'a</span>, str&gt;&gt;) -&gt; <span class="self">Self </span>{

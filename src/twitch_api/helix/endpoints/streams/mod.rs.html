@@ -101,5 +101,5 @@
 <a href=#101 id=101 data-nosnippet>101</a>
 <a href=#102 id=102 data-nosnippet>102</a><span class="kw">impl </span>StreamType {
 <a href=#103 id=103 data-nosnippet>103</a>    <span class="doccomment">/// Check if the stream is live or not
-<a href=#104 id=104 data-nosnippet>104</a>    </span><span class="kw">pub fn </span>is_live(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool { <span class="macro">matches!</span>(<span class="self">self</span>, StreamType::Live) }
+<a href=#104 id=104 data-nosnippet>104</a>    </span><span class="kw">pub const fn </span>is_live(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool { <span class="macro">matches!</span>(<span class="self">self</span>, <span class="self">Self</span>::Live) }
 <a href=#105 id=105 data-nosnippet>105</a>}</code></pre></div></section></main></body></html>

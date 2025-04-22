@@ -63,11 +63,11 @@
 <a href=#63 id=63 data-nosnippet>63</a>//!
 <a href=#64 id=64 data-nosnippet>64</a>//! &lt;/details&gt;
 <a href=#65 id=65 data-nosnippet>65</a>//!
-<a href=#66 id=66 data-nosnippet>66</a>//! &lt;details&gt;&lt;summary style="cursor: pointer"&gt;CCLs 🔴 0/1&lt;/summary&gt;
+<a href=#66 id=66 data-nosnippet>66</a>//! &lt;details&gt;&lt;summary style="cursor: pointer"&gt;CCLs 🟢 1/1&lt;/summary&gt;
 <a href=#67 id=67 data-nosnippet>67</a>//!
 <a href=#68 id=68 data-nosnippet>68</a>//! | Endpoint | Helper | Module |
 <a href=#69 id=69 data-nosnippet>69</a>//! |---|---|---|
-<a href=#70 id=70 data-nosnippet>70</a>//! | [Get Content Classification Labels](https://dev.twitch.tv/docs/api/reference#get-content-classification-labels) | - | - |
+<a href=#70 id=70 data-nosnippet>70</a>//! | [Get Content Classification Labels](https://dev.twitch.tv/docs/api/reference#get-content-classification-labels) | [`HelixClient::get_content_classification_labels`], [`HelixClient::get_content_classification_labels_for_locale`] | [`ccls::get_content_classification_labels`] |
 <a href=#71 id=71 data-nosnippet>71</a>//!
 <a href=#72 id=72 data-nosnippet>72</a>//! &lt;/details&gt;
 <a href=#73 id=73 data-nosnippet>73</a>//!
@@ -121,7 +121,7 @@
 <a href=#121 id=121 data-nosnippet>121</a>//! | [Update Chat Settings](https://dev.twitch.tv/docs/api/reference#update-chat-settings) | - | [`chat::update_chat_settings`] |
 <a href=#122 id=122 data-nosnippet>122</a>//! | [Send Chat Announcement](https://dev.twitch.tv/docs/api/reference#send-chat-announcement) | [`HelixClient::send_chat_announcement`] | [`chat::send_chat_announcement`] |
 <a href=#123 id=123 data-nosnippet>123</a>//! | [Send a Shoutout](https://dev.twitch.tv/docs/api/reference#send-a-shoutout) | - | [`chat::send_a_shoutout`] |
-<a href=#124 id=124 data-nosnippet>124</a>//! | [Send Chat Message](https://dev.twitch.tv/docs/api/reference#send-chat-message) | - | [`chat::send_chat_message`] |
+<a href=#124 id=124 data-nosnippet>124</a>//! | [Send Chat Message](https://dev.twitch.tv/docs/api/reference#send-chat-message) | [`HelixClient::send_chat_message`], [`HelixClient::send_chat_message_reply`] | [`chat::send_chat_message`] |
 <a href=#125 id=125 data-nosnippet>125</a>//! | [Get User Chat Color](https://dev.twitch.tv/docs/api/reference#get-user-chat-color) | [`HelixClient::get_user_chat_color`], [`HelixClient::get_users_chat_colors`] | [`chat::get_user_chat_color`] |
 <a href=#126 id=126 data-nosnippet>126</a>//! | [Update User Chat Color](https://dev.twitch.tv/docs/api/reference#update-user-chat-color) | [`HelixClient::update_user_chat_color`] | [`chat::update_user_chat_color`] |
 <a href=#127 id=127 data-nosnippet>127</a>//!
@@ -136,14 +136,14 @@
 <a href=#136 id=136 data-nosnippet>136</a>//!
 <a href=#137 id=137 data-nosnippet>137</a>//! &lt;/details&gt;
 <a href=#138 id=138 data-nosnippet>138</a>//!
-<a href=#139 id=139 data-nosnippet>139</a>//! &lt;details&gt;&lt;summary style="cursor: pointer"&gt;Conduits 🟡 4/6&lt;/summary&gt;
+<a href=#139 id=139 data-nosnippet>139</a>//! &lt;details&gt;&lt;summary style="cursor: pointer"&gt;Conduits 🟢 6/6&lt;/summary&gt;
 <a href=#140 id=140 data-nosnippet>140</a>//!
 <a href=#141 id=141 data-nosnippet>141</a>//! | Endpoint | Helper | Module |
 <a href=#142 id=142 data-nosnippet>142</a>//! |---|---|---|
 <a href=#143 id=143 data-nosnippet>143</a>//! | [Get Conduits](https://dev.twitch.tv/docs/api/reference#get-conduits) | [`HelixClient::get_conduits`] | [`eventsub::get_conduits`] |
 <a href=#144 id=144 data-nosnippet>144</a>//! | [Create Conduits](https://dev.twitch.tv/docs/api/reference#create-conduits) | [`HelixClient::create_conduit`] | [`eventsub::create_conduit`] |
-<a href=#145 id=145 data-nosnippet>145</a>//! | [Update Conduits](https://dev.twitch.tv/docs/api/reference#update-conduits) | - | - |
-<a href=#146 id=146 data-nosnippet>146</a>//! | [Delete Conduit](https://dev.twitch.tv/docs/api/reference#delete-conduit) | - | - |
+<a href=#145 id=145 data-nosnippet>145</a>//! | [Update Conduits](https://dev.twitch.tv/docs/api/reference#update-conduits) | [`HelixClient::update_conduit`] | [`eventsub::update_conduit`] |
+<a href=#146 id=146 data-nosnippet>146</a>//! | [Delete Conduit](https://dev.twitch.tv/docs/api/reference#delete-conduit) | [`HelixClient::delete_conduit`] | [`eventsub::delete_conduit`] |
 <a href=#147 id=147 data-nosnippet>147</a>//! | [Get Conduit Shards](https://dev.twitch.tv/docs/api/reference#get-conduit-shards) | [`HelixClient::get_conduit_shards`] | [`eventsub::get_conduit_shards`] |
 <a href=#148 id=148 data-nosnippet>148</a>//! | [Update Conduit Shards](https://dev.twitch.tv/docs/api/reference#update-conduit-shards) | [`HelixClient::update_conduit_shards`] | [`eventsub::update_conduit_shards`] |
 <a href=#149 id=149 data-nosnippet>149</a>//!
@@ -351,18 +351,18 @@
 <a href=#351 id=351 data-nosnippet>351</a>//!
 <a href=#352 id=352 data-nosnippet>352</a>//! &lt;/details&gt;
 <a href=#353 id=353 data-nosnippet>353</a>//!
-<a href=#354 id=354 data-nosnippet>354</a>//! &lt;details&gt;&lt;summary style="cursor: pointer"&gt;Users 🟡 5/8&lt;/summary&gt;
+<a href=#354 id=354 data-nosnippet>354</a>//! &lt;details&gt;&lt;summary style="cursor: pointer"&gt;Users 🟢 8/8&lt;/summary&gt;
 <a href=#355 id=355 data-nosnippet>355</a>//!
 <a href=#356 id=356 data-nosnippet>356</a>//! | Endpoint | Helper | Module |
 <a href=#357 id=357 data-nosnippet>357</a>//! |---|---|---|
-<a href=#358 id=358 data-nosnippet>358</a>//! | [Get Users](https://dev.twitch.tv/docs/api/reference#get-users) | [`HelixClient::get_user_from_id`], [`HelixClient::get_user_from_login`], [`HelixClient::get_users_from_ids`] | [`users::get_users`] |
+<a href=#358 id=358 data-nosnippet>358</a>//! | [Get Users](https://dev.twitch.tv/docs/api/reference#get-users) | [`HelixClient::get_user_from_id`], [`HelixClient::get_user_from_login`], [`HelixClient::get_users_from_ids`], [`HelixClient::get_users_from_logins`] | [`users::get_users`] |
 <a href=#359 id=359 data-nosnippet>359</a>//! | [Update User](https://dev.twitch.tv/docs/api/reference#update-user) | [`HelixClient::update_user_description`] | [`users::update_user`] |
 <a href=#360 id=360 data-nosnippet>360</a>//! | [Get User Block List](https://dev.twitch.tv/docs/api/reference#get-user-block-list) | - | [`users::get_user_block_list`] |
 <a href=#361 id=361 data-nosnippet>361</a>//! | [Block User](https://dev.twitch.tv/docs/api/reference#block-user) | [`HelixClient::block_user`] | [`users::block_user`] |
 <a href=#362 id=362 data-nosnippet>362</a>//! | [Unblock User](https://dev.twitch.tv/docs/api/reference#unblock-user) | [`HelixClient::unblock_user`] | [`users::unblock_user`] |
-<a href=#363 id=363 data-nosnippet>363</a>//! | [Get User Extensions](https://dev.twitch.tv/docs/api/reference#get-user-extensions) | - | - |
-<a href=#364 id=364 data-nosnippet>364</a>//! | [Get User Active Extensions](https://dev.twitch.tv/docs/api/reference#get-user-active-extensions) | - | - |
-<a href=#365 id=365 data-nosnippet>365</a>//! | [Update User Extensions](https://dev.twitch.tv/docs/api/reference#update-user-extensions) | - | - |
+<a href=#363 id=363 data-nosnippet>363</a>//! | [Get User Extensions](https://dev.twitch.tv/docs/api/reference#get-user-extensions) | [`HelixClient::get_user_extensions`] | [`users::get_user_extensions`] |
+<a href=#364 id=364 data-nosnippet>364</a>//! | [Get User Active Extensions](https://dev.twitch.tv/docs/api/reference#get-user-active-extensions) | [`HelixClient::get_user_active_extensions`] | [`users::get_user_active_extensions`] |
+<a href=#365 id=365 data-nosnippet>365</a>//! | [Update User Extensions](https://dev.twitch.tv/docs/api/reference#update-user-extensions) | - | [`users::update_user_extensions`] |
 <a href=#366 id=366 data-nosnippet>366</a>//!
 <a href=#367 id=367 data-nosnippet>367</a>//! &lt;/details&gt;
 <a href=#368 id=368 data-nosnippet>368</a>//!
@@ -540,12 +540,12 @@
 <a href=#540 id=540 data-nosnippet>540</a>
 <a href=#541 id=541 data-nosnippet>541</a><span class="kw">impl </span>CursorRef {
 <a href=#542 id=542 data-nosnippet>542</a>    <span class="doccomment">/// Get a borrowed [`Cow&lt;'_, CursorRef&gt;`](std::borrow::Cow::Borrowed)
-<a href=#543 id=543 data-nosnippet>543</a>    </span><span class="kw">pub fn </span>as_cow(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; ::std::borrow::Cow&lt;<span class="lifetime">'_</span>, CursorRef&gt; { <span class="self">self</span>.into() }
+<a href=#543 id=543 data-nosnippet>543</a>    </span><span class="kw">pub fn </span>as_cow(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; ::std::borrow::Cow&lt;<span class="lifetime">'_</span>, <span class="self">Self</span>&gt; { <span class="self">self</span>.into() }
 <a href=#544 id=544 data-nosnippet>544</a>}
 <a href=#545 id=545 data-nosnippet>545</a>
 <a href=#546 id=546 data-nosnippet>546</a><span class="kw">impl </span>Cursor {
 <a href=#547 id=547 data-nosnippet>547</a>    <span class="doccomment">/// Get a owned [`Cow&lt;'_, CursorRef&gt;`](std::borrow::Cow::Owned)
-<a href=#548 id=548 data-nosnippet>548</a>    </span><span class="kw">fn </span>into_cow&lt;<span class="lifetime">'a</span>&gt;(<span class="self">self</span>) -&gt; std::borrow::Cow&lt;<span class="lifetime">'a</span>, CursorRef&gt; { std::borrow::Cow::Owned(<span class="self">self</span>) }
+<a href=#548 id=548 data-nosnippet>548</a>    </span><span class="kw">const fn </span>into_cow&lt;<span class="lifetime">'a</span>&gt;(<span class="self">self</span>) -&gt; std::borrow::Cow&lt;<span class="lifetime">'a</span>, CursorRef&gt; { std::borrow::Cow::Owned(<span class="self">self</span>) }
 <a href=#549 id=549 data-nosnippet>549</a>}
 <a href=#550 id=550 data-nosnippet>550</a>
 <a href=#551 id=551 data-nosnippet>551</a><span class="doccomment">/// Errors that can happen when creating a body

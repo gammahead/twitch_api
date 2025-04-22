@@ -117,3 +117,4 @@ jobs:
         run: cargo test --doc --features "${{ env.CI_TWITCH_API_FEATURES }} _all"
       - name: Check twitch_api docs
         run: cargo xtask doc
+

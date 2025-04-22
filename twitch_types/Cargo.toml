@@ -1,0 +1,64 @@
+[package]
+name = "twitch_types"
+version = "0.4.8"
+edition = "2021"
+repository = "https://github.com/twitch-rs/twitch_types"
+license = "MIT OR Apache-2.0"
+description = "common types for Twitch"
+keywords = ["twitch", "api"]
+readme = "README.md"
+include = [
+    "src/*",
+    "./Cargo.toml",
+    "examples/*",
+    "./README.md",
+    "CHANGELOG.md",
+    "LICENSE*",
+]
+rust-version = "1.67.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0", optional = true }
+serde_derive = { version = "1.0", optional = true }
+time = { version = "0.3", optional = true, default-features = false, features = [
+    "parsing",
+    "formatting",
+] }
+tracing = { version = "0.1", optional = true }
+arbitrary = { version = "1.2.0", optional = true }
+zerofrom = { version = "0.1.0", optional = true }
+
+
+[features]
+default = []
+
+chat = []
+emote = ["serde"]
+entitlement = []
+moderation = ["serde"]
+points = ["serde"]
+stream = ["serde"]
+timestamp = []
+user = ["serde"]
+goal = ["serde"]
+extension = []
+eventsub = []
+sub = []
+color = ["serde"]
+
+serde = ["dep:serde", "dep:serde_derive"]
+
+deny_unknown_fields = ["serde"]
+
+[workspace]
+members = ["xtask"]
+
+[package.metadata.docs.rs]
+all-features = true
+rustc-args = ["--cfg", "nightly"]
+rustdoc-args = ["--cfg", "nightly"]
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(nightly)'] }

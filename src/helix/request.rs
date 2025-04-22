@@ -20,11 +20,13 @@ pub trait Request: serde::Serialize {
     /// Response type. twitch's response will  deserialize to this.
     type Response: serde::de::DeserializeOwned + PartialEq;
     /// Defines layout of the url parameters.
-    fn query(&self) -> Result<String, errors::SerializeError> { ser::to_string(self) }
+    fn query(&self) -> Result<String, errors::SerializeError> {
+        ser::to_string(self)
+    }
     /// Returns full URI for the request, including query parameters.
     fn get_uri(&self) -> Result<http::Uri, InvalidUri> {
         let query = self.query()?;
-        let url = crate::TWITCH_HELIX_URL
+        let url = crate::TWITCH_HELIX_EVENTSUB_URL
             .join(<Self as Request>::PATH)
             .map(|mut u| {
                 u.set_query(Some(&query));
@@ -473,16 +475,20 @@ where
 pub(crate) struct ZeroOrOne<T>(pub Option<T>);
 
 impl<'de, T> serde::Deserialize<'de> for ZeroOrOne<T>
-where T: serde::Deserialize<'de>
+where
+    T: serde::Deserialize<'de>,
 {
     fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-    where D: serde::Deserializer<'de> {
+    where
+        D: serde::Deserializer<'de>,
+    {
         struct ZeroOrOneVisitor<T> {
             _marker: PhantomData<T>,
         }
 
         impl<'de, T> serde::de::Visitor<'de> for ZeroOrOneVisitor<T>
-        where T: serde::Deserialize<'de>
+        where
+            T: serde::Deserialize<'de>,
         {
             type Value = ZeroOrOne<T>;
 
@@ -491,7 +497,9 @@ where T: serde::Deserialize<'de>
             }
 
             fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
-            where A: serde::de::SeqAccess<'de> {
+            where
+                A: serde::de::SeqAccess<'de>,
+            {
                 match seq.next_element() {
                     Ok(None) => Ok(ZeroOrOne(None)),
                     Ok(Some(it)) => match seq.next_element::<T>() {

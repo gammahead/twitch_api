@@ -189,13 +189,22 @@ pub static TWITCH_HELIX_URL: once_cell::sync::Lazy<url::Url> =
 pub static TWITCH_PUBSUB_URL: once_cell::sync::Lazy<url::Url> =
     mock_env_url!("TWITCH_PUBSUB_URL", "wss://pubsub-edge.twitch.tv");
 
+/// Location to twitch Eventsub endpoints
+///
+/// Can be overriden when feature `mock_api` is enabled with environment variable `TWITCH_HELIX_EVENTSUB_URL`.
+#[cfg(feature = "eventsub")]
+pub static TWITCH_HELIX_EVENTSUB_URL: once_cell::sync::Lazy<url::Url> = mock_env_url!(
+    "TWITCH_HELIX_EVENTSUB_URL",
+    "wss://eventsub.wss.twitch.tv/ws"
+);
+
 /// Location to twitch Eventsub WebSocket
 ///
 /// Can be overriden when feature `mock_api` is enabled with environment variable `TWITCH_EVENTSUB_WEBSOCKET_URL`.
 #[cfg(feature = "eventsub")]
 pub static TWITCH_EVENTSUB_WEBSOCKET_URL: once_cell::sync::Lazy<url::Url> = mock_env_url!(
     "TWITCH_EVENTSUB_WEBSOCKET_URL",
-    "wss://eventsub.wss.twitch.tv/ws"
+    "https://api.twitch.tv/helix/"
 );
 
 /// Client for Twitch APIs.

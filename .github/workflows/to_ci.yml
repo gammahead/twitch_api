@@ -6,15 +6,15 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
     paths:
-      - 'twitch_oauth2/**'
+      - twitch_oauth2/**
   push:
     branches: [main]
     paths:
-      - 'twitch_oauth2/**'
+      - twitch_oauth2/**
   merge_group:
     types: [checks_requested]
     paths:
-      - 'twitch_oauth2/**'
+      - twitch_oauth2/**
 jobs:
   ci:
     name: CI

@@ -6,18 +6,18 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
     paths-ignore:
-      - 'twitch_oauth2/**'
-      - 'twitch_types/**'
+      - twitch_oauth2/**
+      - twitch_types/**
   push:
     branches: [main]
     paths-ignore:
-      - 'twitch_oauth2/**'
-      - 'twitch_types/**'
+      - twitch_oauth2/**
+      - twitch_types/**
   merge_group:
     types: [checks_requested]
     paths-ignore:
-      - 'twitch_oauth2/**'
-      - 'twitch_types/**'
+      - twitch_oauth2/**
+      - twitch_types/**
 jobs:
   ci:
     name: CI

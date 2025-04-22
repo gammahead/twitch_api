@@ -1,11 +1,17 @@
-name: CI
+name: Twitch Types CI
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+    paths:
+      - 'twitch_types/**'
   push:
     branches: [main]
+    paths:
+      - 'twitch_types/**'
   merge_group:
     types: [checks_requested]
+    paths:
+      - 'twitch_types/**'
 env:
   MSRV: 1.67.0
 jobs:

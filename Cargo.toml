@@ -23,8 +23,7 @@ rust-version = "1.77.0"
 
 
 [workspace]
-members = ["xtask", "examples/*"]
-exclude = ["twitch_types", "twitch_oauth2"]
+members = ["xtask", "examples/*", "twitch_types", "twitch_oauth2"]
 
 [workspace.dependencies]
 twitch_api = { version = "0.7.2", path = "." }

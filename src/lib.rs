@@ -192,7 +192,7 @@ pub static TWITCH_PUBSUB_URL: once_cell::sync::Lazy<url::Url> =
 /// Location to twitch Eventsub endpoints
 ///
 /// Can be overriden when feature `mock_api` is enabled with environment variable `TWITCH_HELIX_EVENTSUB_URL`.
-#[cfg(feature = "eventsub")]
+#[cfg(feature = "helix")]
 pub static TWITCH_HELIX_EVENTSUB_URL: once_cell::sync::Lazy<url::Url> = mock_env_url!(
     "TWITCH_HELIX_EVENTSUB_URL",
     "https://api.twitch.tv/helix/"

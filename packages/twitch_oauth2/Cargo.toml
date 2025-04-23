@@ -1,6 +1,7 @@
 [package]
 name = "twitch_oauth2"
 version = "0.15.1"
+resolver = "2"
 edition = "2021"
 repository = "https://github.com/twitch-rs/twitch_api"
 license = "MIT OR Apache-2.0"

@@ -10,11 +10,11 @@ mod helix;
 pub mod html;
 pub mod rustdoc;
 
-pub static HELIX_SOURCE_FILE: &str = "src/helix/mod.rs";
-pub static HELIX_ENDPOINTS_FOLDER: &str = "src/helix/endpoints/";
+pub static HELIX_SOURCE_FILE: &str = "packages/twitch_api/src/helix/mod.rs";
+pub static HELIX_ENDPOINTS_FOLDER: &str = "packages/twitch_api/src/helix/endpoints/";
 static HELIX_URL: &str = "https://dev.twitch.tv/docs/api/reference";
 
-pub static EVENTSUB_SOURCE_FILE: &str = "src/eventsub/mod.rs";
+pub static EVENTSUB_SOURCE_FILE: &str = "packages/twitch_api/src/eventsub/mod.rs";
 static EVENTSUB_URL: &str = "https://dev.twitch.tv/docs/eventsub/eventsub-subscription-types";
 
 pub fn run(sh: &Shell, build_json_docs: bool, all_features: &str) -> Result<()> {

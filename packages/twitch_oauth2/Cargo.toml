@@ -21,7 +21,7 @@ rust-version = "1.71.1"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [features]
-default = []
+default = ["client", "mock_api"]
 client = ["dep:async-trait"]
 reqwest = ["dep:reqwest", "client"]
 surf_client_curl = ["surf", "surf/curl-client"]

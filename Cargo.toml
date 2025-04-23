@@ -17,3 +17,6 @@ serde_json = "1.0.107"
 thiserror = "1.0.50"
 url = "2.5.4"
 ureq = { version = "2.10.1", default-features = false, features = ["tls"] }
+
+[profile.dev.package.backtrace]
+opt-level = 3

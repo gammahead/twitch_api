@@ -212,13 +212,6 @@ rustc-args = ["--cfg", "nightly"]
 rustdoc-args = ["--cfg", "nightly"]
 cargo-args = ["-Zunstable-options", "-Zrustdoc-scrape-examples"]
 
-[profile.dev.package.backtrace]
-opt-level = 3
-
-#workaround for using different twitch_types
-[patch.crates-io.twitch_types]
-path = "./twitch_types"
-
 [lints.rust]
 unexpected_cfgs = { level = "warn", check-cfg = ['cfg(_internal_never)', 'cfg(nightly)'] }
 

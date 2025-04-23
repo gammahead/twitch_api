@@ -221,7 +221,7 @@ fn defer<F: FnOnce()>(f: F) -> impl Drop {
 fn pkgid() -> Result<String, color_eyre::Report> {
     let sh = xshell::Shell::new()?;
     sh.change_dir(get_cargo_workspace());
-    cmd!(sh, "cargo pkgid")
+    cmd!(sh, "cargo pkgid -p twitch_api")
         .read()
         .map(|s| s.trim().to_owned())
         .map_err(Into::into)
@@ -238,7 +238,7 @@ pub fn get_cargo_workspace() -> &'static Path {
     WORKSPACE.get_or_init(|| {
         let sh = xshell::Shell::new().unwrap();
         sh.change_dir(manifest_dir);
-        cmd!(sh, "cargo metadata --format-version 1 --no-deps")
+        cmd!(sh, "cargo metadata --format-version 1 --no-deps --manifest-path packages/src/twitch_api/Cargo.toml")
             .read()
             .map_err(color_eyre::Report::from)
             .and_then(|s| serde_json::from_str::<CargoMetadata>(&s).map_err(Into::into))

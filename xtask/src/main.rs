@@ -44,12 +44,19 @@ fn main() -> color_eyre::Result<()> {
         Args::Release { package } => {
             // Validate package name
             if !["twitch_api", "twitch_types", "twitch_oauth2"].contains(&package.as_str()) {
-                color_eyre::eyre::bail!("Invalid package name. Must be one of: twitch_api, twitch_types, twitch_oauth2");
+                color_eyre::eyre::bail!(
+                    "Invalid package name. Must be one of: twitch_api, twitch_types, twitch_oauth2"
+                );
             }
 
             let manifest_path = format!("packages/{}/Cargo.toml", package);
-            let version = cmd!(sh, "cargo pkgid -p {package}").read()?.rsplit_once('#').unwrap().1.to_string();
-            
+            let version = cmd!(sh, "cargo pkgid -p {package}")
+                .read()?
+                .rsplit_once('#')
+                .unwrap()
+                .1
+                .to_string();
+
             color_eyre::eyre::ensure!(
                 version.starts_with(|c: char| c.is_ascii_digit()),
                 "version doesn't start with a number"
@@ -68,7 +75,11 @@ fn main() -> color_eyre::Result<()> {
                 )
                 .read()?;
                 let dry_run = sh.var("CI").is_err() || current_branch != default_branch;
-                eprintln!("Tagging {} {}!", package, if dry_run { "(dry run)" } else { "" });
+                eprintln!(
+                    "Tagging {} {}!",
+                    package,
+                    if dry_run { "(dry run)" } else { "" }
+                );
 
                 let change_log =
                     std::fs::read_to_string(get_cargo_workspace().join("CHANGELOG.md"))?;
@@ -87,7 +98,11 @@ fn main() -> color_eyre::Result<()> {
                 }
 
                 let dry_run_arg = if dry_run { Some("--dry-run") } else { None };
-                cmd!(sh, "cargo publish {dry_run_arg...} --manifest-path {manifest_path} --features all").run()?;
+                cmd!(
+                    sh,
+                    "cargo publish {dry_run_arg...} --manifest-path {manifest_path} --features all"
+                )
+                .run()?;
 
                 if dry_run {
                     eprintln!("{}", cmd!(sh, "git push origin {tag}"));

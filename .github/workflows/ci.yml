@@ -30,7 +30,7 @@ jobs:
           fetch-depth: 0 # fetch tags for publish
           # ssh-key: "${{ secrets.COMMIT_KEY }}" # use deploy key to trigger workflow on tag
       - uses: Swatinem/rust-cache@v2
-      - run: cargo xtask release
+      - run: cargo xtask release --package twitch_api
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}

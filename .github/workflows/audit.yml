@@ -35,7 +35,7 @@ jobs:
       - run: cargo audit
 
   cargo-deny:
-    name: Cargo Deny 
+    name: Cargo Deny
     runs-on: ubuntu-latest
     strategy:
       matrix:

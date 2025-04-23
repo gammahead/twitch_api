@@ -1,5 +1,5 @@
 {
   "twitch_api": "0.7.2",
   "twitch_types": "0.8.4",
-  "twitch_oauth2": "0.15.1",
+  "twitch_oauth2": "0.15.1"
 }

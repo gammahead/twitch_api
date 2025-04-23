@@ -28,16 +28,16 @@ jobs:
         uses: taiki-e/install-action@cargo-llvm-cov
 
       - name: Generate code coverage for tests
-        run: cargo llvm-cov --no-report --tests --features "${{ env.CI_TWITCH_API_FEATURES }} _all trace_unknown_fields"
+        run: cargo llvm-cov -p twitch_api --no-report --tests --features "${{ env.CI_TWITCH_API_FEATURES }} _all trace_unknown_fields"
       - name: Generate code coverage for tests without any features
-        run: cargo llvm-cov --no-report --tests
+        run: cargo llvm-cov -p twitch_api --no-report --tests
 
       # doctests take too long to complete
       # - name: Generate code coverage for docs
       #   run: cargo llvm-cov --no-report --doc --features "${{ env.CI_TWITCH_API_FEATURES }} _all"
 
       - name: Merge lcov.info
-        run: cargo llvm-cov report --lcov --ignore-filename-regex "twitch_oauth2" --output-path lcov.info
+        run: cargo llvm-cov report -p twitch_api --lcov --ignore-filename-regex "twitch_oauth2" --output-path lcov.info
 
       - name: Upload to codecov.io
         uses: codecov/codecov-action@v5

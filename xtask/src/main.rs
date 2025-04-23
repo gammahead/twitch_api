@@ -13,7 +13,11 @@ static TWITCH_API_FEATURES: &str =
 
 #[derive(Debug, Parser)]
 pub enum Args {
-    Release,
+    Release {
+        /// The package to release (twitch_api, twitch_types, or twitch_oauth2)
+        #[clap(long)]
+        package: String,
+    },
     Doc {
         /// Set the target dir, this will by default be a subdirectory inside `target` to
         /// save on compilation, as the rust flags will be changed, thus needing a new compilation
@@ -37,13 +41,27 @@ fn main() -> color_eyre::Result<()> {
     let args = Args::parse();
 
     match args {
-        Args::Release => {
-            let version = pkgid()?.rsplit_once('#').unwrap().1.to_string();
+        Args::Release { package } => {
+            // Validate package name
+            if !["twitch_api", "twitch_types", "twitch_oauth2"].contains(&package.as_str()) {
+                color_eyre::eyre::bail!(
+                    "Invalid package name. Must be one of: twitch_api, twitch_types, twitch_oauth2"
+                );
+            }
+
+            let manifest_path = format!("packages/{}/Cargo.toml", package);
+            let version = cmd!(sh, "cargo pkgid -p {package}")
+                .read()?
+                .rsplit_once('#')
+                .unwrap()
+                .1
+                .to_string();
+
             color_eyre::eyre::ensure!(
                 version.starts_with(|c: char| c.is_ascii_digit()),
                 "version doesn't start with a number"
             );
-            let tag = format!("v{version}");
+            let tag = format!("{package}-v{version}");
 
             let has_tag = cmd!(sh, "git tag --list")
                 .read()?
@@ -57,7 +75,11 @@ fn main() -> color_eyre::Result<()> {
                 )
                 .read()?;
                 let dry_run = sh.var("CI").is_err() || current_branch != default_branch;
-                eprintln!("Taging!{}!", if dry_run { " (dry run)" } else { "" });
+                eprintln!(
+                    "Tagging {} {}!",
+                    package,
+                    if dry_run { "(dry run)" } else { "" }
+                );
 
                 let change_log =
                     std::fs::read_to_string(get_cargo_workspace().join("CHANGELOG.md"))?;
@@ -76,7 +98,11 @@ fn main() -> color_eyre::Result<()> {
                 }
 
                 let dry_run_arg = if dry_run { Some("--dry-run") } else { None };
-                cmd!(sh, "cargo publish {dry_run_arg...} --features all").run()?;
+                cmd!(
+                    sh,
+                    "cargo publish {dry_run_arg...} --manifest-path {manifest_path} --features all"
+                )
+                .run()?;
 
                 if dry_run {
                     eprintln!("{}", cmd!(sh, "git push origin {tag}"));
@@ -195,7 +221,7 @@ fn defer<F: FnOnce()>(f: F) -> impl Drop {
 fn pkgid() -> Result<String, color_eyre::Report> {
     let sh = xshell::Shell::new()?;
     sh.change_dir(get_cargo_workspace());
-    cmd!(sh, "cargo pkgid")
+    cmd!(sh, "cargo pkgid -p twitch_api")
         .read()
         .map(|s| s.trim().to_owned())
         .map_err(Into::into)
@@ -212,7 +238,7 @@ pub fn get_cargo_workspace() -> &'static Path {
     WORKSPACE.get_or_init(|| {
         let sh = xshell::Shell::new().unwrap();
         sh.change_dir(manifest_dir);
-        cmd!(sh, "cargo metadata --format-version 1 --no-deps")
+        cmd!(sh, "cargo metadata --format-version 1 --no-deps --manifest-path packages/twitch_api/Cargo.toml")
             .read()
             .map_err(color_eyre::Report::from)
             .and_then(|s| serde_json::from_str::<CargoMetadata>(&s).map_err(Into::into))

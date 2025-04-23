@@ -13,6 +13,11 @@ ignore = [
   # Dependent on as a dev-dependency (TODO: use ciborium/minicbor)
   "RUSTSEC-2021-0127",
 
+  # https://rustsec.org/advisories/RUSTSEC-2021-0141
+  # `dotenv` is unmaintained
+  # It's only used as a dev-dependency (TODO: use dotenvy)
+  "RUSTSEC-2021-0141",
+
   # https://rustsec.org/advisories/RUSTSEC-2020-0056
   # The author of the `stdweb` crate is unresponsive
   # Dependent on via surf (and http-types)
@@ -83,6 +88,14 @@ expression = "MIT AND ISC AND OpenSSL"
 # depending on the rest of your configuration
 license-files = [
   # Each entry is a crate relative path, and the (opaque) hash of its contents
+  { path = "LICENSE", hash = 0xbd0eed23 },
+]
+
+[[licenses.clarify]]
+name = "ring"
+version = "0.16.15"
+expression = "MIT AND ISC AND OpenSSL"
+license-files = [
   { path = "LICENSE", hash = 0xbd0eed23 },
 ]
 

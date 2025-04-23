@@ -1,6 +1,5 @@
 name: Audit
-env:
-  MSRV: 1.77.0
+
 on:
   pull_request:
     types: [opened, reopened, synchronize]
@@ -13,28 +12,28 @@ on:
 
 jobs:
   audit:
-    needs: [cargo-deny] # security-audit,
+    needs: [cargo-deny]
     runs-on: ubuntu-latest
     if: always()
     steps:
       - run: jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
       - name: Done
         run: exit 0
+
   security-audit:
     name: Security Audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - name: Install rust
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: ${{ env.MSRV }}
+          toolchain: 1.77.0 # Using highest MSRV for security checks
       - uses: taiki-e/install-action@v2
         with:
           tool: cargo-audit
       - run: cargo audit
+
   cargo-deny:
     name: Cargo Deny
     runs-on: ubuntu-latest
@@ -47,11 +46,24 @@ jobs:
           - sources
     steps:
       - uses: actions/checkout@v4
-        with:
-          submodules: recursive
       - uses: EmbarkStudios/cargo-deny-action@v2
         with:
-          rust-version: ${{ env.MSRV }}
+          rust-version: 1.77.0
           command: check ${{ matrix.checks }} -s
           arguments: --all-features
+          manifest-path: packages/twitch_types/Cargo.toml
+          log-level: warn
+      - uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          rust-version: 1.67.0
+          command: check ${{ matrix.checks }} -s
+          arguments: --all-features
+          manifest-path: packages/twitch_api/Cargo.toml
+          log-level: warn
+      - uses: EmbarkStudios/cargo-deny-action@v2
+        with:
+          rust-version: 1.71.1
+          command: check ${{ matrix.checks }} -s
+          arguments: --all-features
+          manifest-path: packages/twitch_oauth2/Cargo.toml
           log-level: warn

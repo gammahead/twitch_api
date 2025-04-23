@@ -144,3 +144,56 @@ features = ["all", "unsupported", "_all"]
 rustc-args = ["--cfg", "nightly"]
 rustdoc-args = ["--cfg", "nightly"]
 cargo-args = ["-Zunstable-options", "-Zrustdoc-scrape-examples"] 
+
+[[example]]
+name = "automod_check"
+path = "examples/automod_check.rs"
+required-features = ["reqwest", "helix"]
+
+[[example]]
+name = "get_channel_status"
+path = "examples/get_channel_status.rs"
+required-features = ["reqwest", "helix"]
+
+[[example]]
+name = "get_moderation"
+path = "examples/get_moderation.rs"
+required-features = ["reqwest", "helix"]
+
+[[example]]
+name = "get_streams"
+path = "examples/get_streams.rs"
+required-features = ["reqwest", "helix"]
+
+[[example]]
+name = "modify_channel"
+path = "examples/modify_channel.rs"
+
+required-features = ["reqwest", "helix"]
+[[example]]
+name = "client"
+path = "examples/client.rs"
+required-features = ["reqwest", "helix"]
+
+[[example]]
+name = "channel_information"
+path = "examples/channel_information.rs"
+required-features = ["reqwest", "helix"]
+
+[[example]]
+name = "channel_information_custom"
+path = "examples/channel_information_custom.rs"
+required-features = ["reqwest", "helix", "unsupported"]
+
+[[example]]
+name = "followed_streams"
+path = "examples/followed_streams.rs"
+required-features = ["reqwest", "helix"]
+
+[[example]]
+name = "mock_api"
+path = "examples/mock_api.rs"
+required-features = ["reqwest", "helix", "mock_api", "twitch_oauth2/mock_api"]
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(_internal_never)', 'cfg(nightly)'] }

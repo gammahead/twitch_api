@@ -34,8 +34,8 @@ jobs:
           tool: cargo-audit
       - run: cargo audit
 
-  cargo-deny-api:
-    name: Cargo Deny (twitch_api)
+  cargo-deny:
+    name: Cargo Deny 
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -53,19 +53,6 @@ jobs:
           arguments: --all-features
           manifest-path: packages/twitch_types/Cargo.toml
           log-level: warn
-
-  cargo-deny-types:
-    name: Cargo Deny (twitch_types)
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        checks:
-          - advisories
-          - bans
-          - licenses
-          - sources
-    steps:
-      - uses: actions/checkout@v4
       - uses: EmbarkStudios/cargo-deny-action@v2
         with:
           rust-version: 1.67.0
@@ -73,19 +60,6 @@ jobs:
           arguments: --all-features
           manifest-path: packages/twitch_api/Cargo.toml
           log-level: warn
-
-  cargo-deny-oauth2:
-    name: Cargo Deny (twitch_oauth2)
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        checks:
-          - advisories
-          - bans
-          - licenses
-          - sources
-    steps:
-      - uses: actions/checkout@v4
       - uses: EmbarkStudios/cargo-deny-action@v2
         with:
           rust-version: 1.71.1

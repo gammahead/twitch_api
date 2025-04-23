@@ -12,7 +12,7 @@ on:
 
 jobs:
   audit:
-    needs: [cargo-deny-api, cargo-deny-types, cargo-deny-oauth2]
+    needs: [cargo-deny]
     runs-on: ubuntu-latest
     if: always()
     steps:

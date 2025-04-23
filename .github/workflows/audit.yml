@@ -28,7 +28,7 @@ jobs:
       - name: Install rust
         uses: dtolnay/rust-toolchain@master
         with:
-          toolchain: 1.77.0  # Using highest MSRV for security checks
+          toolchain: 1.77.0 # Using highest MSRV for security checks
       - uses: taiki-e/install-action@v2
         with:
           tool: cargo-audit

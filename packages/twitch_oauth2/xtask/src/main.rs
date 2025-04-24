@@ -11,7 +11,6 @@ static TWITCH_OAUTH2_FEATURES: &str = "all mock_api";
 
 #[derive(Debug, Parser)]
 pub enum Args {
-    Release,
     Doc {
         /// Set the target dir, this will by default be a subdirectory inside `target` to
         /// save on compilation, as the rust flags will be changed, thus needing a new compilation
@@ -29,58 +28,6 @@ fn main() -> color_eyre::Result<()> {
     let args = Args::parse();
 
     match args {
-        Args::Release => {
-            let version = pkgid()?.rsplit_once('#').unwrap().1.to_string();
-            color_eyre::eyre::ensure!(
-                version.starts_with(|c: char| c.is_ascii_digit()),
-                "version doesn't start with a number"
-            );
-            let tag = format!("v{version}");
-
-            let has_tag = cmd!(sh, "git tag --list")
-                .read()?
-                .lines()
-                .any(|it| it.trim() == tag);
-            if !has_tag {
-                let current_branch = cmd!(sh, "git branch --show-current").read()?;
-                let default_branch = cmd!(
-                    sh,
-                    "gh repo view --json defaultBranchRef --jq .defaultBranchRef.name"
-                )
-                .read()?;
-                let dry_run = sh.var("CI").is_err() || current_branch != default_branch;
-                eprintln!("Taging!{}!", if dry_run { " (dry run)" } else { "" });
-
-                let change_log =
-                    std::fs::read_to_string(get_cargo_workspace().join("CHANGELOG.md"))?;
-
-                color_eyre::eyre::ensure!(
-                    change_log.contains(&format!("## [{tag}] -")),
-                    "change log is not updated"
-                );
-
-                if dry_run {
-                    eprintln!("{}", cmd!(sh, "git tag {tag}"));
-                } else {
-                    cmd!(sh, "git tag {tag}").run()?;
-                }
-
-                let dry_run_arg = if dry_run { Some("--dry-run") } else { None };
-                cmd!(
-                    sh,
-                    "cargo publish {dry_run_arg...} --features client,mock_api"
-                )
-                .run()?;
-
-                if dry_run {
-                    eprintln!("{}", cmd!(sh, "git push origin {tag}"));
-                } else {
-                    cmd!(sh, "git push origin {tag}").run()?;
-                }
-            } else {
-                eprintln!("tag exists already, no action needed");
-            }
-        }
         Args::Doc { target_dir, last } => {
             let _rustdocflags =
                 sh.push_env("CARGO_ENCODED_RUSTDOCFLAGS", RUSTDOCFLAGS.join("\u{1f}"));

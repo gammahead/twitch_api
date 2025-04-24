@@ -1,7 +1,6 @@
 [package]
 name = "twitch_api"
 version = "0.7.2"
-resolver = "2"
 authors = ["Emil Gardström <emil.gardstrom@gmail.com>"]
 edition = "2018"
 repository = "https://github.com/twitch-rs/twitch_api"
@@ -52,7 +51,7 @@ twitch_types = { workspace = true }
 tower-service = { version = "0.3.2", optional = true }
 
 [features]
-default = ["deser_borrow"]
+default = ["twitch_oauth2/all", "twitch_oauth2/mock_api", "all", "unsupported", "deny_unknown_fields", "_all"]
 
 client = ["twitch_oauth2/client", "dep:futures", "dep:hyper"]
 

@@ -30,9 +30,10 @@
 //! <!-- END-OVERVIEW -->
 
 use crate::{
-    helix::{self, Request},
+    helix::{self},
     types,
 };
+use req::Request;
 use serde_derive::{Deserialize, Serialize};
 use std::borrow::Cow;
 
@@ -70,3 +71,66 @@ pub use update_conduit::{UpdateConduitBody, UpdateConduitRequest};
 pub use update_conduit_shards::{
     UpdateConduitShardsBody, UpdateConduitShardsRequest, UpdateConduitShardsResponse,
 };
+
+#[cfg(not(feature = "mock_api"))]
+mod req {
+    pub(super) use crate::helix::Request;
+}
+
+#[cfg(feature = "mock_api")]
+mod req {
+    use crate::helix::{InvalidUri, Request as HelixRequest};
+    use std::str::FromStr;
+
+    /// A request is a Twitch endpoint, see [New Twitch API](https://dev.twitch.tv/docs/api/reference) reference
+    pub trait Request: HelixRequest {
+        /// The path to the endpoint relative to the helix root. eg. `channels` for [Get Channel Information](https://dev.twitch.tv/docs/api/reference#get-channel-information)
+        const PATH: &'static str;
+        /// Scopes needed for this endpoint
+        #[cfg(feature = "twitch_oauth2")]
+        const SCOPE: twitch_oauth2::Validator;
+        /// Optional scopes needed by this endpoint
+        #[cfg(feature = "twitch_oauth2")]
+        const OPT_SCOPE: &'static [twitch_oauth2::Scope] = &[];
+        /// Response type. twitch's response will  deserialize to this.
+        type Response: serde::de::DeserializeOwned + PartialEq;
+    }
+
+    impl<T> HelixRequest for T
+    where T: Request
+    {
+        type Response = <Self as Request>::Response;
+
+        #[cfg(feature = "twitch_oauth2")]
+        const OPT_SCOPE: &'static [twitch_oauth2::Scope] = <Self as Request>::OPT_SCOPE;
+        const PATH: &'static str = <Self as Request>::PATH;
+        #[cfg(feature = "twitch_oauth2")]
+        const SCOPE: twitch_oauth2::Validator = <Self as Request>::SCOPE;
+
+        fn get_uri(&self) -> Result<http::Uri, InvalidUri> {
+            let query = self.query()?;
+            let mut url: url::Url = crate::TWITCH_EVENTSUB_WEBSOCKET_URL.clone();
+            url.set_path(<Self as HelixRequest>::PATH);
+            url.set_query(Some(&query));
+
+            let _ = match url.scheme() {
+                "wss" => url.set_scheme("https"),
+                _ => url.set_scheme("http"),
+            };
+
+            http::Uri::from_str(url.as_str()).map_err(Into::into)
+        }
+
+        fn get_bare_uri() -> Result<http::Uri, InvalidUri> {
+            let mut url: url::Url = crate::TWITCH_EVENTSUB_WEBSOCKET_URL.clone();
+            url.set_path(<Self as HelixRequest>::PATH);
+
+            let _ = match url.scheme() {
+                "wss" => url.set_scheme("https"),
+                _ => url.set_scheme("http"),
+            };
+
+            http::Uri::from_str(url.as_str()).map_err(Into::into)
+        }
+    }
+}

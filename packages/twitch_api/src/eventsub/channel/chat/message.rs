@@ -89,7 +89,7 @@ pub struct ChannelChatMessageV1Payload {
     /// Only present when in a shared chat session. The UUID that identifies the source message from the channel the message was sent from.
     pub source_message_id: Option<types::MsgId>,
     /// Only present when in a shared chat session. The list of chat badges for the chatter in the channel the message was sent from.
-    #[serde(deserialize_with = "crate::deserialize_default_from_null")]
+    #[serde(default, deserialize_with = "crate::deserialize_default_from_null")]
     pub source_badges: Vec<Badge>,
     /// Determines if a message delivered during a shared chat session is only sent to the source channel.
     pub is_source_only: Option<bool>,

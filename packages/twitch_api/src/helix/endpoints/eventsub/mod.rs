@@ -97,18 +97,15 @@ mod req {
     }
 
     impl<T> HelixRequest for T
-    where
-        T: Request,
+    where T: Request
     {
-        const PATH: &'static str = <Self as Request>::PATH;
-
-        #[cfg(feature = "twitch_oauth2")]
-        const SCOPE: twitch_oauth2::Validator = <Self as Request>::SCOPE;
+        type Response = <Self as Request>::Response;
 
         #[cfg(feature = "twitch_oauth2")]
         const OPT_SCOPE: &'static [twitch_oauth2::Scope] = <Self as Request>::OPT_SCOPE;
-
-        type Response = <Self as Request>::Response;
+        const PATH: &'static str = <Self as Request>::PATH;
+        #[cfg(feature = "twitch_oauth2")]
+        const SCOPE: twitch_oauth2::Validator = <Self as Request>::SCOPE;
 
         fn get_uri(&self) -> Result<http::Uri, InvalidUri> {
             let query = self.query()?;
